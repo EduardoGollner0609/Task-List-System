@@ -23,7 +23,7 @@ public class TaskService {
 		Task task = new Task();
 		copyDtoToEntity(task, dto);
 		task.setOrderApresentation(repository.quantityTasks() + 1);
-		return new TaskDTO(task);
+		return new TaskDTO(repository.save(task));
 	}
 
 	@Transactional(readOnly = true)
