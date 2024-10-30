@@ -4,7 +4,7 @@ export default function Header() {
     return (
     <header>
         <nav>
-            <h1>Tasks</h1>
+            <h1></h1>
         </nav>
     </header>
     );

@@ -1,0 +1,37 @@
+.card-introduction {
+  text-align: center;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 10px;
+  height: 450px;
+  max-width: 500px;
+  padding: 20px;
+  border: 2px solid #d9d9d9;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.card-introduction h1 {
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 28px;
+}
+
+.card-introduction p {
+  color: #fff;
+  font-size: 22px;
+}
+
+.card-introduction button {
+  margin: 0 auto;
+  border-radius: 20px;
+  border: none;
+  padding: 5px 10px;
+ width: 250px;
+  cursor: pointer;
+  color: black;
+  font-size: 18px;
+  background-color: #fff;
+}

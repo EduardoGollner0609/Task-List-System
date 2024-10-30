@@ -1,0 +1,16 @@
+main {
+  height: 100vh;
+  background: linear-gradient(
+    331deg,
+    rgba(6, 199, 109, 1) 0%,
+    rgba(5, 154, 150, 1) 100%
+  );
+  background-repeat: no-repeat;
+}
+
+.section-home-page {
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
