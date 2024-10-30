@@ -29,9 +29,42 @@
   border-radius: 20px;
   border: none;
   padding: 5px 10px;
- width: 250px;
+  width: 250px;
   cursor: pointer;
   color: black;
   font-size: 18px;
   background-color: #fff;
+}
+
+@media (max-width: 996px) {
+  .card-introduction h1 {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 26px;
+  }
+
+  .card-introduction p {
+    color: #fff;
+    font-size: 20px;
+  }
+  .card-introduction {
+    height: 400px;
+  }
+}
+
+@media (max-width: 576px) {
+  .card-introduction h1 {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 24px;
+  }
+
+  .card-introduction p {
+    color: #fff;
+    font-size: 18px;
+  }
+
+  .card-introduction {
+    height: 380px;
+  }
 }

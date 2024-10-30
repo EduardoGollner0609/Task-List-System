@@ -5,11 +5,15 @@ export default function CardIntroduction() {
     <div className="card-introduction">
       <h1>Seja Bem Vindo</h1>
       <div className="card-introduction-bottom">
-        <p>
-          O dia a dia é corrido para muitos, e as vezes deixamos algumas tarefas
-          de lado, mas aqui com a gente você pode aperfeiçoar sua dedicação
-          quanto as suas tarefas. clique no botão abaixo e não perca essa oportunidade.
-        </p>
+      <p>
+          Quer salvar sua lista de tarefas sem precisar ficar escrevendo com a
+          mão?
+          </p>
+          <br />
+         <p> Salve aqui com a gente e tenha um controle das suas tarefas do dia a
+         dia.</p>
+          <br />
+          <p>Clique abaixo e comece agora</p>
       </div>
 
       <button>Clique Aqui</button>
