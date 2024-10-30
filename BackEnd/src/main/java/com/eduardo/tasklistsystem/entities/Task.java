@@ -17,7 +17,7 @@ public class Task {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private Double custo;
+	private Double cost;
 	private Date limitDate;
 	@Column(unique = true)
 	private Integer orderApresentation;
@@ -25,10 +25,10 @@ public class Task {
 	public Task() {
 	}
 
-	public Task(Long id, String name, Double custo, Date limitDate, Integer orderApresentation) {
+	public Task(Long id, String name, Double cost, Date limitDate, Integer orderApresentation) {
 		this.id = id;
 		this.name = name;
-		this.custo = custo;
+		this.cost = cost;
 		this.limitDate = limitDate;
 		this.orderApresentation = orderApresentation;
 	}
@@ -49,12 +49,12 @@ public class Task {
 		this.name = name;
 	}
 
-	public Double getCusto() {
-		return custo;
+	public Double getCost() {
+		return cost;
 	}
 
-	public void setCusto(Double custo) {
-		this.custo = custo;
+	public void setCost(Double cost) {
+		this.cost = cost;
 	}
 
 	public Date getLimitDate() {

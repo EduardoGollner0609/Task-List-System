@@ -2,21 +2,23 @@ package com.eduardo.tasklistsystem.dto;
 
 import java.util.Date;
 
+import com.eduardo.tasklistsystem.entities.Task;
+
 public class TaskDTO {
 
 	private Long id;
 	private String name;
-	private Double custo;
+	private Double cost;
 	private Date limitDate;
 
 	public TaskDTO() {
 	}
 
-	public TaskDTO(Long id, String name, Double custo, Date limitDate) {
-		this.id = id;
-		this.name = name;
-		this.custo = custo;
-		this.limitDate = limitDate;
+	public TaskDTO(Task task) {
+		id = task.getId();
+		name = task.getName();
+		cost = task.getCost();
+		limitDate = task.getLimitDate();
 	}
 
 	public Long getId() {
@@ -35,12 +37,12 @@ public class TaskDTO {
 		this.name = name;
 	}
 
-	public Double getCusto() {
-		return custo;
+	public Double getCost() {
+		return cost;
 	}
 
-	public void setCusto(Double custo) {
-		this.custo = custo;
+	public void setCost(Double cost) {
+		this.cost = cost;
 	}
 
 	public Date getLimitDate() {
