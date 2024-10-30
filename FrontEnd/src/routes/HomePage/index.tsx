@@ -1,18 +1,13 @@
 import CardIntroduction from '../../components/CardIntroduction';
-import Header from '../../components/Header';
 import './styles.css';
 
 export default function HomePage() {
     return (
-        <>
-        <Header />
         <main>
+            <h1 id="title-home-page">Lista de Tarefas</h1>
             <section className="section-home-page">
             <CardIntroduction />
             </section>
         </main>
-        </>
-
-
     );
 }

@@ -3,7 +3,8 @@
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 10px;
-  height: 450px;
+  max-height: 80%;
+  min-height: 400px;
   max-width: 500px;
   padding: 20px;
   border: 2px solid #d9d9d9;
@@ -31,9 +32,11 @@
   padding: 5px 10px;
   width: 250px;
   cursor: pointer;
-  color: black;
+  color: #fff;
   font-size: 18px;
-  background-color: #fff;
+  background-color: transparent;
+  border: 2px solid #fff;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 996px) {
@@ -46,9 +49,6 @@
   .card-introduction p {
     color: #fff;
     font-size: 20px;
-  }
-  .card-introduction {
-    height: 400px;
   }
 }
 
@@ -63,8 +63,32 @@
     color: #fff;
     font-size: 18px;
   }
+}
+
+@media (max-width: 490px) {
+  .card-introduction h1 {
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 22px;
+  }
+
+  .card-introduction p {
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .card-introduction button {
+    width: 240px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 386px) {
 
   .card-introduction {
-    height: 380px;
+    gap: 20px;
+  }
+  .card-introduction button {
+    margin: 0 auto;
   }
 }
