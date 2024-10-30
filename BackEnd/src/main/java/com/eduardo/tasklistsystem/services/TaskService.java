@@ -25,7 +25,7 @@ public class TaskService {
 		updateData(obj, task);
 		return repository.save(obj);
 	}
-
+	
 	private void updateData(Task obj, Task task) {
 		obj.setName(task.getName());
 		obj.setCusto(task.getCusto());
