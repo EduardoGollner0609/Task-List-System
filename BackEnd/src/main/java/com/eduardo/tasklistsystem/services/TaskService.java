@@ -1,5 +1,7 @@
 package com.eduardo.tasklistsystem.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,10 @@ public class TaskService {
 
 	@Autowired
 	private TaskRepository repository;
+
+	public List<TaskDTO> findAll() {
+		return repository.findAllByOrderByOrderApresentationAsc().stream().map(x -> new TaskDTO(x)).toList();
+	}
 
 	public void delete(Long id) {
 		if (!repository.existsById(id)) {
