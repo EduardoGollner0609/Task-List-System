@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.eduardo.tasklistsystem.dto.TaskDTO;
 import com.eduardo.tasklistsystem.entities.Task;
@@ -16,10 +18,12 @@ public class TaskService {
 	@Autowired
 	private TaskRepository repository;
 
+	@Transactional(readOnly = true)
 	public List<TaskDTO> findAll() {
 		return repository.findAllByOrderByOrderApresentationAsc().stream().map(x -> new TaskDTO(x)).toList();
 	}
 
+	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(Long id) {
 		if (!repository.existsById(id)) {
 			throw new ResourceNotFoundException("Tarefa não encontrada.");
@@ -27,6 +31,7 @@ public class TaskService {
 		repository.deleteById(id);
 	}
 
+	@Transactional
 	public TaskDTO update(Long id, TaskDTO dto) {
 		Task task = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada."));
 		copyDtoToEntity(task, dto);
