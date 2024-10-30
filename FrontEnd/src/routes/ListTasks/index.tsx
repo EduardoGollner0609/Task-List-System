@@ -2,6 +2,13 @@ import './styles.css';
 
 export default function ListTasks() {
     return (
-        <h1>Tarefas</h1>
+   <main>
+    <h1 id="title-home-page">Lista de Tarefas</h1>
+    <section className="section-list-tasks">
+<div className="list-tasks">
+
+</div>
+    </section>
+   </main>
     );
 }
