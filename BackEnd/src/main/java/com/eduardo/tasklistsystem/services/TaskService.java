@@ -1,5 +1,7 @@
 package com.eduardo.tasklistsystem.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +23,7 @@ public class TaskService {
 		repository.deleteById(id);
 	}
 
-	public TaskDTO updayte(Long id, TaskDTO dto) {
+	public TaskDTO update(Long id, TaskDTO dto) {
 		Task task = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada."));
 		copyDtoToEntity(task, dto);
 		return new TaskDTO(repository.save(task));

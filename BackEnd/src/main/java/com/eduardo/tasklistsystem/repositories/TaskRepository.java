@@ -7,5 +7,5 @@ import com.eduardo.tasklistsystem.entities.Task;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long>{
-
+	
 }
