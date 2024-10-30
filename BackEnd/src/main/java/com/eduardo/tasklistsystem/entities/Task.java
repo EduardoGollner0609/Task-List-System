@@ -2,6 +2,7 @@ package com.eduardo.tasklistsystem.entities;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,7 @@ public class Task {
 	private String name;
 	private Double custo;
 	private Date limitDate;
+	@Column(unique = true)
 	private Integer orderApresentation;
 	
 	public Task() {
