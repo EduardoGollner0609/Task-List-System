@@ -18,6 +18,14 @@ public class TaskService {
 	@Autowired
 	private TaskRepository repository;
 
+	@Transactional
+	public TaskDTO insert(TaskDTO dto) {
+		Task task = new Task();
+		copyDtoToEntity(task, dto);
+		task.setOrderApresentation(repository.quantityTasks() + 1);
+		return new TaskDTO(task);
+	}
+
 	@Transactional(readOnly = true)
 	public List<TaskDTO> findAll() {
 		return repository.findAllByOrderByOrderApresentationAsc().stream().map(x -> new TaskDTO(x)).toList();
