@@ -1,3 +1,5 @@
+import { useState } from "react";
+import CardUpdateTask from "../CardUpdateTask";
 import "./styles.css";
 
 interface TaskProps {
@@ -16,23 +18,25 @@ const formatDate = (date: Date): string => {
 
 export default function Task({ id, name, cost, limitDate }: TaskProps) {
   const formattedDate: string = formatDate(new Date(limitDate));
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
-  function ShowUpdateModal() {
-    const updateModal = document.querySelector(".card-update-task");
-    if (updateModal != null) {
-      updateModal.classList.add("active-update-task");
-    }
+  const handleOpenModalUpdate = () => {
+    setIsUpdateModalOpen(prev => !prev);
   }
+
   return (
-    <div className="card-task">
-      <p>ID: {id}</p>
-      <p>{name}</p>
-      <p>Custo: R${cost.toFixed(2)}</p>
-      <p>Data limite: {formattedDate}</p>
-      <div className="task-icons-functions">
-        <ion-icon name="create-outline" onClick={ShowUpdateModal}></ion-icon>
-        <ion-icon name="trash-outline"></ion-icon>
+    <>
+      <div className="card-task">
+        <p>ID: {id}</p>
+        <p>{name}</p>
+        <p>Custo: R${cost.toFixed(2)}</p>
+        <p>Data limite: {formattedDate}</p>
+        <div className="task-icons-functions">
+          <ion-icon name="create-outline" onClick={handleOpenModalUpdate}></ion-icon>
+          <ion-icon name="trash-outline"></ion-icon>
+        </div>
       </div>
-    </div>
+     {isUpdateModalOpen && <CardUpdateTask id={id} name={name} cost={cost} limitDate={limitDate} />}
+    </>
   );
 }

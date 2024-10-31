@@ -32,7 +32,7 @@ public class TaskService {
 	}
 
 	@Transactional(readOnly = true)
-	public TaskDTO findVById(Long id) {
+	public TaskDTO findById(Long id) {
 		return new TaskDTO(
 				repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada."))
 				);
