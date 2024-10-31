@@ -7,10 +7,10 @@ export default function Task() {
       <p>Tarefa vem aqui e se for maior como ela se enquadra aqui</p>
       <p>Custo: R$20.00</p>
       <p>Data limite: 20/07/2024</p>
-      <div className="card-task-icons">
-        <ion-icon name="arrow-up-outline"></ion-icon>
-        <ion-icon name="arrow-down-outline"></ion-icon>
-      </div>
+     <div className="task-icons-functions">
+     <ion-icon name="create-outline"></ion-icon>
+     <ion-icon name="trash-outline"></ion-icon>
+     </div>
     </div>
   );
 }

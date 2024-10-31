@@ -13,20 +13,13 @@
   font-size: 18px;
 }
 
-.card-task-icons {
+.task-icons-functions{
+  color: #fff;
   font-size: 24px;
   display: flex;
   gap: 20px;
-  color: #fff;
 }
 
-.card-task-icons {
-  font-size: 24px;
-  display: flex;
-  gap: 20px;
-  color: #fff;
-}
-
-.card-task-icons ion-icon {
-  cursor: pointer;
+.task-icons-functions ion-icon {
+cursor: pointer;
 }
