@@ -54,7 +54,7 @@ export default function CardCreateTask() {
           onChange={(event) => setLimitDate(event.target.value)}
         />
       </form>
-      <button onClick={submit} className="btn-create-task-submit"></button>
+      <button onClick={submit} className="btn-create-task-submit">Salvar</button>
     </div>
   );
 }

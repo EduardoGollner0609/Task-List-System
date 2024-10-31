@@ -1,6 +1,6 @@
 .card-create-task {
   border-radius: 20px;
-  height: 90vh;
+  height: 60vh;
   border: 2px solid #fff;
   display: flex;
   flex-direction: column;
@@ -51,4 +51,32 @@
 
 .card-create-task-top-exit p {
   font-size: 18px;
+}
+
+.input-container {
+  margin: 5px 0px 20px 0px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  & input {
+    border: none;
+    padding: 5px 5px;
+    font-size: 18px;
+    outline: none;
+    color: #fff;
+    border-bottom: 1px solid rgb(6, 121, 117);
+    background-color: rgba(5, 154, 150, 1);
+  }
+}
+
+.card-create-task button {
+  border: none;
+  width: 400px;
+  margin: 0 auto;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: rgb(6, 121, 117);
+  color: #fff;
+  cursor: pointer;
+  padding: 5px;
 }
