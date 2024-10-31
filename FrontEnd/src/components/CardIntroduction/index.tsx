@@ -12,7 +12,6 @@ export default function CardIntroduction() {
         </p>
         <br />
         <p>
-          {" "}
           Salve aqui com a gente e tenha um controle das suas tarefas do dia a
           dia.
         </p>
