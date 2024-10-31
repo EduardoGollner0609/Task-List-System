@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import "./styles.css";
-import axios from "axios";
 import { TaskData } from "../../interface/TaskData";
 import { useTaskDataMutateUpdate } from "../../hooks/useTaskDataMutate";
+import { useTaskDataById } from "../../hooks/useTaskData";
 
 interface CardUpdateTaskProps {
   id: number;
@@ -38,20 +38,18 @@ const formatDateForInput = (date: Date) => {
 };
 
 export default function CardUpdateTask(props: CardUpdateTaskProps) {
-  const API_URL = "http://localhost:8080";
   const id = props.id;
   const [name, setName] = useState("");
   const [cost, setCost] = useState(0);
   const [limitDate, setLimitDate] = useState("");
   const { mutate } = useTaskDataMutateUpdate();
+  const { data } = useTaskDataById(id);
 
   useEffect(() => {
-    axios.get(`${API_URL}/tasks/${id}`).then((response) => {
-      setName(response.data.name);
-      setCost(response.data.cost);
-      setLimitDate(formatDateForInput(response.data.limitDate));
-    });
-  }, []);
+      setName(data?.data.name);
+      setCost(data?.data.cost);
+      setLimitDate(formatDateForInput(data?.data.limitDate));
+    }, []);
 
   const submit = () => {
     const taskData: TaskData = {
@@ -73,8 +71,18 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
 
       <h1>Criar tarefa</h1>
       <form className="input-container">
-        <Input label="name" placeHolder="Digite a tarefa" value={name} updateValue={setName} />
-        <Input label="cost" placeHolder="Digite o custo" value={cost} updateValue={setCost} />
+        <Input
+          label="name"
+          placeHolder="Digite a tarefa"
+          value={name}
+          updateValue={setName}
+        />
+        <Input
+          label="cost"
+          placeHolder="Digite o custo"
+          value={cost}
+          updateValue={setCost}
+        />
         <label>Data Limite</label>
         <input
           type="date"
