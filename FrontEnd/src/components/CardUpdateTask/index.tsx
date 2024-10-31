@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./styles.css";
 import axios from "axios";
 import { TaskData } from "../../interface/TaskData";
-import { useMutation, useQueryClient } from "react-query";
 import { useTaskDataMutateUpdate } from "../../hooks/useTaskDataMutate";
 
 interface CardUpdateTaskProps {

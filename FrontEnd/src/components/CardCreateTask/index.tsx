@@ -9,6 +9,10 @@ interface InputProps {
   updateValue(value: unknown): void;
 }
 
+interface CardCreateTaskProps {
+  closeModal(): void;
+}
+
 const Input = ({ label, value, updateValue }: InputProps) => {
   return (
     <>
@@ -21,7 +25,7 @@ const Input = ({ label, value, updateValue }: InputProps) => {
   );
 };
 
-export default function CardCreateTask() {
+export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
   const [name, setName] = useState("");
   const [cost, setCost] = useState(0);
   const [limitDate, setLimitDate] = useState("");
@@ -36,16 +40,9 @@ export default function CardCreateTask() {
     mutate(taskData);
   };
 
-  function closeModalCreate() {
-    const cardCreateTask = document.querySelector(".card-create-task");
-
-    if (cardCreateTask != null) {
-      cardCreateTask.classList.remove("active-create-task");
-    }
-  }
   return (
     <div className="card-create-task">
-      <div className="card-create-task-top-exit" onClick={closeModalCreate}>
+      <div className="card-create-task-top-exit" onClick={closeModal}>
         <ion-icon name="backspace-outline"></ion-icon>
         <p>Fechar</p>
       </div>

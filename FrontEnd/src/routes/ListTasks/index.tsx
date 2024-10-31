@@ -2,23 +2,20 @@ import "./styles.css";
 import Task from "../../components/Task";
 import { useTaskData } from "../../hooks/useTaskData";
 import CardCreateTask from "../../components/CardCreateTask";
+import { useState } from "react";
 
 export default function ListTasks() {
   const { data } = useTaskData();
+  const [isCreateModalOpen, setIsCreateModal] = useState(false);
 
-  function showModalCreate() {
-    const cardCreateTask = document.querySelector(".card-create-task");
-
-    if (cardCreateTask != null) {
-      cardCreateTask.classList.add("active-create-task");
-    }
-  }
+  const handleOpenModalCreate = () => {
+    setIsCreateModal((prev) => !prev);
+  };
 
   return (
     <main>
       <h1 id="title-home-page">Lista de Tarefas</h1>
       <section className="section-list-tasks">
-        <CardCreateTask />
         <div className="list-tasks">
           {data?.map(
             (taskData: {
@@ -35,12 +32,15 @@ export default function ListTasks() {
               />
             )
           )}
-          <div className="function-add-task" onClick={showModalCreate}>
+          <div className="function-add-task" onClick={handleOpenModalCreate}>
             <ion-icon name="add-circle-outline"></ion-icon>
             <p>Adicionar nova tarefa</p>
           </div>
         </div>
       </section>
+      {isCreateModalOpen && (
+        <CardCreateTask closeModal={handleOpenModalCreate} />
+      )}
     </main>
   );
 }
