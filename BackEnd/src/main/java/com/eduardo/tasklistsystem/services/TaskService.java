@@ -31,6 +31,13 @@ public class TaskService {
 		return repository.findAllByOrderByOrderApresentationAsc().stream().map(x -> new TaskDTO(x)).toList();
 	}
 
+	@Transactional(readOnly = true)
+	public TaskDTO findVById(Long id) {
+		return new TaskDTO(
+				repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada."))
+				);
+	}
+
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public void delete(Long id) {
 		if (!repository.existsById(id)) {

@@ -1,4 +1,3 @@
-import CardUpdateTask from "../CardUpdateTask";
 import "./styles.css";
 
 interface TaskProps {
@@ -17,19 +16,23 @@ const formatDate = (date: Date): string => {
 
 export default function Task({ id, name, cost, limitDate }: TaskProps) {
   const formattedDate: string = formatDate(new Date(limitDate));
+
+  function ShowUpdateModal() {
+    const updateModal = document.querySelector(".card-update-task");
+    if (updateModal != null) {
+      updateModal.classList.add("active-update-task");
+    }
+  }
   return (
-    <>
-      <div className="card-task">
-        <p>ID: {id}</p>
-        <p>{name}</p>
-        <p>Custo: R${cost.toFixed(2)}</p>
-        <p>Data limite: {formattedDate}</p>
-        <div className="task-icons-functions">
-          <ion-icon name="create-outline"></ion-icon>
-          <ion-icon name="trash-outline"></ion-icon>
-        </div>
+    <div className="card-task">
+      <p>ID: {id}</p>
+      <p>{name}</p>
+      <p>Custo: R${cost.toFixed(2)}</p>
+      <p>Data limite: {formattedDate}</p>
+      <div className="task-icons-functions">
+        <ion-icon name="create-outline" onClick={ShowUpdateModal}></ion-icon>
+        <ion-icon name="trash-outline"></ion-icon>
       </div>
-      <CardUpdateTask id={id} name={name} cost={cost} limitDate={limitDate} />
-    </>
+    </div>
   );
 }

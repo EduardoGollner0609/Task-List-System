@@ -32,6 +32,12 @@ public class TaskController {
 		return ResponseEntity.ok().body(tasks);
 	}
 
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<TaskDTO> findById(@PathVariable Long id) {
+		TaskDTO dto = service.findVById(id);
+		return ResponseEntity.ok().body(dto);
+	}
+
 	@PostMapping
 	public ResponseEntity<TaskDTO> insert(@RequestBody TaskDTO dto) {
 		dto = service.insert(dto);
