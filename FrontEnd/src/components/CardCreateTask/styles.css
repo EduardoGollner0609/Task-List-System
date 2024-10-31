@@ -64,6 +64,10 @@
   }
 }
 
+input::placeholder {
+  color: #fff;
+}
+
 .card-create-task button {
   border: none;
   width: 400px;

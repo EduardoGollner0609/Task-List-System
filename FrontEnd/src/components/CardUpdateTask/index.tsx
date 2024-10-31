@@ -15,15 +15,17 @@ interface CardUpdateTaskProps {
 interface InputProps {
   label: string;
   value: string | number;
+  placeHolder: string;
   updateValue(value: unknown): void;
 }
 
-const Input = ({ label, value, updateValue }: InputProps) => {
+const Input = ({ label, value, placeHolder, updateValue }: InputProps) => {
   return (
     <>
       <label>{label}</label>
       <input
         value={value}
+        placeholder={placeHolder}
         onChange={(event) => updateValue(event.target.value)}
       ></input>
     </>
@@ -71,8 +73,8 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
 
       <h1>Criar tarefa</h1>
       <form className="input-container">
-        <Input label="name" value={name} updateValue={setName} />
-        <Input label="cost" value={cost} updateValue={setCost} />
+        <Input label="name" placeHolder="Digite a tarefa" value={name} updateValue={setName} />
+        <Input label="cost" placeHolder="Digite o custo" value={cost} updateValue={setCost} />
         <label>Data Limite</label>
         <input
           type="date"

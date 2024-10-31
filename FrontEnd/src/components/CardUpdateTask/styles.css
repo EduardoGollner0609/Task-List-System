@@ -65,6 +65,10 @@
   }
 }
 
+input::placeholder {
+  color: #fff;
+}
+
 .card-update-task button {
   border: none;
   width: 400px;
