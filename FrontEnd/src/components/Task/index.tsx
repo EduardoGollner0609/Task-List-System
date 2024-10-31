@@ -1,12 +1,27 @@
-import "./styles.css";
+import './styles.css';
 
-export default function Task() {
+interface TaskProps {
+id : number,
+name: string,
+cost: number,
+limitDate: Date,
+}
+
+const formatDate = (date: Date): string => {
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+};
+
+export default function Task({id, name, cost, limitDate} : TaskProps) {
+  const formattedDate: string = formatDate(new Date(limitDate));
   return (
     <div className="card-task">
-      <p>ID: 10</p>
-      <p>Tarefa vem aqui e se for maior como ela se enquadra aqui</p>
-      <p>Custo: R$20.00</p>
-      <p>Data limite: 20/07/2024</p>
+      <p>ID: {id}</p>
+      <p>{name}</p>
+      <p>Custo: R${cost.toFixed(2)}</p>
+      <p>Data limite: {formattedDate}</p>
      <div className="task-icons-functions">
      <ion-icon name="create-outline"></ion-icon>
      <ion-icon name="trash-outline"></ion-icon>
