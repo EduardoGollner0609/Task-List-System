@@ -3,6 +3,13 @@ import "./styles.css";
 import { useTaskDataMutate } from "../../hooks/useTaskDataMutate";
 import { TaskData } from "../../interface/TaskData";
 
+interface TaskProps {
+  id: number;
+  name: string;
+  cost: number;
+  limitDate: Date;
+}
+
 interface InputProps {
   label: string;
   value: string | number;
@@ -21,11 +28,11 @@ const Input = ({ label, value, updateValue }: InputProps) => {
   );
 };
 
-export default function CardCreateTask() {
-  const [name, setName] = useState("");
-  const [cost, setCost] = useState(0);
-  const [limitDate, setLimitDate] = useState("");
-  const { mutate } = useTaskDataMutate("POST");
+export default function CardUpdateTask(task: TaskProps) {
+  const [name, setName] = useState(task.name);
+  const [cost, setCost] = useState(task.cost);
+  const [limitDate, setLimitDate] = useState(task.limitDate);
+  const { mutate } = useTaskDataMutate("PUT");
 
   const submit = () => {
     const taskData: TaskData = {
@@ -44,8 +51,8 @@ export default function CardCreateTask() {
     }
   }
   return (
-    <div className="card-create-task">
-      <div className="card-create-task-top-exit" onClick={closeModalCreate}>
+    <div className="card-update-task">
+      <div className="card-update-task-top-exit" onClick={closeModalCreate}>
         <ion-icon name="backspace-outline"></ion-icon>
         <p>Fechar</p>
       </div>

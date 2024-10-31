@@ -11,7 +11,6 @@ export default function ListTasks() {
 
     if (cardCreateTask != null) {
       cardCreateTask.classList.add("active-create-task");
-
     }
   }
 
