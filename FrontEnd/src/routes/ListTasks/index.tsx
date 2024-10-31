@@ -8,6 +8,16 @@ export default function ListTasks() {
       <section className="section-list-tasks">
         <div className="list-tasks">
           <Task />
+          <Task />
+          <Task />
+          <Task />
+          <Task />
+          <Task />
+          <Task />
+          <Task />
+          <Task />
+          <Task />
+          <Task />
           <div className="function-add-task">
           <ion-icon name="add-circle-outline"></ion-icon>
           <p>Adicionar nova tarefa</p>

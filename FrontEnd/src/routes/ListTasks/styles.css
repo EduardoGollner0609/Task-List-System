@@ -1,6 +1,6 @@
+
 .section-list-tasks {
   padding: 20px;
-  height: 90%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,7 +11,8 @@
 .list-tasks {
   width: 100%;
   border: 2px solid #fff;
-  height: 800px;
+  height: 600px;
+  overflow-x: auto;
   border-radius: 20px;
   padding: 20px;
   display: flex;
