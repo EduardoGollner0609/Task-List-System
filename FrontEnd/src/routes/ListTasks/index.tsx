@@ -8,11 +8,13 @@ export default function ListTasks() {
 
   function showModalCreate() {
     const cardCreateTask = document.querySelector(".card-create-task");
+
     if (cardCreateTask != null) {
       cardCreateTask.classList.add("active-create-task");
+
     }
   }
-  
+
   return (
     <main>
       <h1 id="title-home-page">Lista de Tarefas</h1>
