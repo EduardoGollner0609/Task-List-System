@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import "./styles.css";
-import { useTaskDataMutate } from "../../hooks/useTaskDataMutate";
-import { TaskData } from "../../interface/TaskData";
 import axios from "axios";
+import { TaskData } from "../../interface/TaskData";
+import { useMutation, useQueryClient } from "react-query";
+import { useTaskDataMutateUpdate } from "../../hooks/useTaskDataMutate";
 
-interface TaskProps {
+interface CardUpdateTaskProps {
   id: number;
   name: string;
   cost: number;
   limitDate: Date;
+  closeModal(): void;
 }
 
 interface InputProps {
@@ -31,17 +33,19 @@ const Input = ({ label, value, updateValue }: InputProps) => {
 
 const formatDateForInput = (date: Date) => {
   date = new Date(date);
-  return date.toISOString().split("T")[0]; 
+  return date.toISOString().split("T")[0];
 };
 
-export default function CardUpdateTask(task: TaskProps) {
+export default function CardUpdateTask(props: CardUpdateTaskProps) {
+  const API_URL = "http://localhost:8080";
+  const id = props.id;
   const [name, setName] = useState("");
   const [cost, setCost] = useState(0);
   const [limitDate, setLimitDate] = useState("");
-  const { mutate } = useTaskDataMutate("PUT");
+  const { mutate } = useTaskDataMutateUpdate();
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/tasks/${task.id}`).then((response) => {
+    axios.get(`${API_URL}/tasks/${id}`).then((response) => {
       setName(response.data.name);
       setCost(response.data.cost);
       setLimitDate(formatDateForInput(response.data.limitDate));
@@ -50,24 +54,18 @@ export default function CardUpdateTask(task: TaskProps) {
 
   const submit = () => {
     const taskData: TaskData = {
+      id,
       name,
       cost,
       limitDate: new Date(),
     };
+
     mutate(taskData);
   };
 
-  function closeModalCreate() {
-    const cardCreateTask = document.querySelector(".card-update-task");
-
-    if (cardCreateTask != null) {
-      cardCreateTask.classList.remove("active-update-task");
-    }
-  }
-
   return (
     <div className="card-update-task">
-      <div className="card-update-task-top-exit" onClick={closeModalCreate}>
+      <div className="card-update-task-top-exit" onClick={props.closeModal}>
         <ion-icon name="backspace-outline"></ion-icon>
         <p>Fechar</p>
       </div>
@@ -83,7 +81,7 @@ export default function CardUpdateTask(task: TaskProps) {
           onChange={(event) => setLimitDate(event.target.value)}
         />
       </form>
-      <button onClick={submit} className="btn-create-task-submit">
+      <button onClick={submit} className="btn-update-task-submit">
         Salvar
       </button>
     </div>

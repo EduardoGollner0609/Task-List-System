@@ -21,8 +21,8 @@ export default function Task({ id, name, cost, limitDate }: TaskProps) {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
   const handleOpenModalUpdate = () => {
-    setIsUpdateModalOpen(prev => !prev);
-  }
+    setIsUpdateModalOpen((prev) => !prev);
+  };
 
   return (
     <>
@@ -32,11 +32,22 @@ export default function Task({ id, name, cost, limitDate }: TaskProps) {
         <p>Custo: R${cost.toFixed(2)}</p>
         <p>Data limite: {formattedDate}</p>
         <div className="task-icons-functions">
-          <ion-icon name="create-outline" onClick={handleOpenModalUpdate}></ion-icon>
+          <ion-icon
+            name="create-outline"
+            onClick={handleOpenModalUpdate}
+          ></ion-icon>
           <ion-icon name="trash-outline"></ion-icon>
         </div>
       </div>
-     {isUpdateModalOpen && <CardUpdateTask id={id} name={name} cost={cost} limitDate={limitDate} />}
+      {isUpdateModalOpen && (
+        <CardUpdateTask
+          id={id}
+          name={name}
+          cost={cost}
+          limitDate={limitDate}
+          closeModal={handleOpenModalUpdate}
+        />
+      )}
     </>
   );
 }

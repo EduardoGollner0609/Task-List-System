@@ -25,7 +25,7 @@ export default function CardCreateTask() {
   const [name, setName] = useState("");
   const [cost, setCost] = useState(0);
   const [limitDate, setLimitDate] = useState("");
-  const { mutate } = useTaskDataMutate("POST");
+  const { mutate } = useTaskDataMutate();
 
   const submit = () => {
     const taskData: TaskData = {

@@ -2,7 +2,6 @@ import { useMutation, useQueryClient } from "react-query";
 import axios from "axios";
 import { TaskData } from "../interface/TaskData";
 
-
 const API_URL = "http://localhost:8080";
 
 const postData = async (data: TaskData) => {
@@ -11,23 +10,32 @@ const postData = async (data: TaskData) => {
 };
 
 const putData = async (data: TaskData) => {
-  const response = axios.put(API_URL + "/tasks", data);
+  const response = axios.put(`${API_URL}/tasks/${data.id}`, data);
   return response;
 };
 
-export function useTaskDataMutate(methodValue : string) {
+export function useTaskDataMutateUpdate() {
   const queryClient = useQueryClient();
 
-  const mutationFn = methodValue === "PUT" ? putData : postData;
-
   const mutate = useMutation({
-    mutationFn,
-    retry: 1,
+    mutationFn: putData,
+    retry: 2,
     onSuccess: () => {
       queryClient.invalidateQueries(["task-data"]);
     },
-    onError: (error) => {
-      console.error("Error during mutation:", error);
+  });
+
+  return mutate;
+}
+
+export function useTaskDataMutate() {
+  const queryClient = useQueryClient();
+
+  const mutate = useMutation({
+    mutationFn: postData,
+    retry: 2,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["task-data"]);
     },
   });
 
