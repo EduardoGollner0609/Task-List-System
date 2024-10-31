@@ -36,9 +36,16 @@ export default function CardCreateTask() {
     mutate(taskData);
   };
 
+  function closeModalCreate() {
+    const cardCreateTask = document.querySelector(".card-create-task");
+
+    if (cardCreateTask != null) {
+      cardCreateTask.classList.remove("active-create-task");
+    }
+  }
   return (
     <div className="card-create-task">
-      <div className="card-create-task-top-exit">
+      <div className="card-create-task-top-exit" onClick={closeModalCreate}>
         <ion-icon name="backspace-outline"></ion-icon>
         <p>Fechar</p>
       </div>
@@ -54,7 +61,9 @@ export default function CardCreateTask() {
           onChange={(event) => setLimitDate(event.target.value)}
         />
       </form>
-      <button onClick={submit} className="btn-create-task-submit">Salvar</button>
+      <button onClick={submit} className="btn-create-task-submit">
+        Salvar
+      </button>
     </div>
   );
 }
