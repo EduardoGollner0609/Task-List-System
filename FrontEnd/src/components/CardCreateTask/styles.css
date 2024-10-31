@@ -16,10 +16,15 @@
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   z-index: 1;
+  display: none;
 }
 
 .card-create-task h1 {
   text-align: center;
   color: #fff;
   font-size: 28px;
+}
+
+.active-create-task {
+  display: flex;
 }

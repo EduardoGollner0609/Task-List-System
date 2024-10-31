@@ -1,4 +1,3 @@
-
 .section-list-tasks {
   padding: 20px;
   display: flex;
@@ -16,28 +15,27 @@
   border-radius: 20px;
   padding: 20px;
   display: flex;
-flex-direction: column;
-gap: 20px;
+  flex-direction: column;
+  gap: 20px;
 }
 
-
 .function-add-task {
-display: flex;
-align-items: center;
-padding: 10px;
-justify-content: center;
-border: 2px solid #fff;
-border-radius: 20px;
-color: #fff;
-gap: 10px;
-cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: center;
+  border: 2px solid #fff;
+  border-radius: 20px;
+  color: #fff;
+  gap: 10px;
+  cursor: pointer;
 }
 
 .function-add-task p {
   font-size: 18px;
-  }
+}
 
-  
 .function-add-task ion-icon {
   font-size: 24px;
-  }
+}
+
