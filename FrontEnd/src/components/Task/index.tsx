@@ -21,7 +21,8 @@ export default function Task({
   limitTime,
 }: TaskProps) {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-  const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] = useState(false);
+  const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
+    useState(false);
 
   console.log(limitTime);
 
@@ -62,32 +63,34 @@ export default function Task({
         <p>{limitDateDisplay(limitDate)}</p>
         <p>{limitTimeDisplay(limitTime)}</p>
         <div className="task-icons-functions">
-   
-        <ion-icon name="arrow-up-outline"></ion-icon>
-        <ion-icon name="arrow-up-outline"></ion-icon>
-        
+
+
+          <ion-icon name="arrow-up-outline"></ion-icon>
+          <ion-icon name="arrow-down-outline"></ion-icon>
+
           <ion-icon
             name="create-outline"
             onClick={handleOpenModalUpdate}
           ></ion-icon>
-          <ion-icon name="trash-outline"   onClick={handleOpenModalConfirmRemove}></ion-icon>
+          <ion-icon
+            name="trash-outline"
+            onClick={handleOpenModalConfirmRemove}
+          ></ion-icon>
         </div>
       </div>
-     
+
       {isUpdateModalOpen && (
         <CardUpdateTask
           id={id}
           name={name}
           cost={cost}
           limitDate={limitDate}
-          limitTime = {limitTime}
-          closeModal={handleOpenModalUpdate}        />
-      )}
-        {isConfirmDeleteModalOpen && (
-        <CardConfirmRemove
-          id={id}
-          closeModal={handleOpenModalConfirmRemove}
+          limitTime={limitTime}
+          closeModal={handleOpenModalUpdate}
         />
+      )}
+      {isConfirmDeleteModalOpen && (
+        <CardConfirmRemove id={id} closeModal={handleOpenModalConfirmRemove} />
       )}
     </>
   );

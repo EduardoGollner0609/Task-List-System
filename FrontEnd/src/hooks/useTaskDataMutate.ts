@@ -14,7 +14,11 @@ const putData = async (data: TaskData) => {
   return response;
 };
 
-const deleteData = async (id : number) => {
+const putDataRiseTask = async (id: number) => {
+  axios.put(`${API_URL}/tasks/${id}`);
+};
+
+const deleteData = async (id: number) => {
   axios.delete(`${API_URL}/tasks/${id}`);
 };
 
@@ -45,6 +49,17 @@ export function useTaskMutateDelete() {
 
   return mutate;
 }
+
+export function useTaskDataMutateRiseTask() {
+  const queryClient = useQueryClient();
+
+  const mutate = useMutation({
+    mutationFn: putDataRiseTask,
+    retry: 2,
+    onSuccess: () => {
+      queryClient.invalidateQueries(["task-data"]);
+    },
+  });
 
 export function useTaskDataMutate() {
   const queryClient = useQueryClient();
