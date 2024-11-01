@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
 import "./styles.css";
 import { TaskData } from "../../interface/TaskData";
 import { useTaskDataMutateUpdate } from "../../hooks/useTaskDataMutate";
-import { useTaskDataById } from "../../hooks/useTaskData";
+import { useState } from "react";
 
 interface CardUpdateTaskProps {
   id: number;
@@ -32,31 +31,21 @@ const Input = ({ label, value, placeHolder, updateValue }: InputProps) => {
   );
 };
 
-const formatDateForInput = (date: Date) => {
-  date = new Date(date);
-  return date.toISOString().split("T")[0];
-};
-
 export default function CardUpdateTask(props: CardUpdateTaskProps) {
   const id = props.id;
-  const [name, setName] = useState("");
-  const [cost, setCost] = useState(0);
-  const [limitDate, setLimitDate] = useState("");
   const { mutate } = useTaskDataMutateUpdate();
-  const { data } = useTaskDataById(id);
-
-  useEffect(() => {
-      setName(data?.data.name);
-      setCost(data?.data.cost);
-      setLimitDate(formatDateForInput(data?.data.limitDate));
-    }, []);
+  const [name, setName] = useState(props.name);
+  const [cost, setCost] = useState(props.cost);
+  const [limitDate, setLimitDate] = useState(
+    props.limitDate
+  );
 
   const submit = () => {
     const taskData: TaskData = {
       id,
       name,
       cost,
-      limitDate: new Date(),
+      limitDate
     };
 
     mutate(taskData);
@@ -69,7 +58,7 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
         <p>Fechar</p>
       </div>
 
-      <h1>Criar tarefa</h1>
+      <h1>Atualizar tarefa</h1>
       <form className="input-container">
         <Input
           label="name"

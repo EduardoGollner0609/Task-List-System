@@ -1,6 +1,7 @@
 package com.eduardo.tasklistsystem.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import com.eduardo.tasklistsystem.entities.Task;
 
@@ -9,7 +10,8 @@ public class TaskDTO {
 	private Long id;
 	private String name;
 	private Double cost;
-	private Date limitDate;
+	private LocalDate limitDate;
+	private LocalTime limitTime;
 
 	public TaskDTO() {
 	}
@@ -19,6 +21,7 @@ public class TaskDTO {
 		name = task.getName();
 		cost = task.getCost();
 		limitDate = task.getLimitDate();
+		limitTime = task.getLimitTime();
 	}
 
 	public Long getId() {
@@ -45,11 +48,20 @@ public class TaskDTO {
 		this.cost = cost;
 	}
 
-	public Date getLimitDate() {
+	public LocalDate getLimitDate() {
 		return limitDate;
 	}
 
-	public void setLimitDate(Date limitDate) {
+	public LocalTime getLimitTime() {
+		return limitTime;
+	}
+
+	public void setLimitTime(LocalTime limitTime) {
+		this.limitTime = limitTime;
+	}
+
+	public void setLimitDate(LocalDate limitDate) {
 		this.limitDate = limitDate;
 	}
+
 }

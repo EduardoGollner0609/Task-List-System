@@ -1,5 +1,7 @@
 import { useState } from "react";
 import CardUpdateTask from "../CardUpdateTask";
+import { format, parseISO } from "date-fns";
+import { ptBR } from "date-fns/locale";
 import "./styles.css";
 
 interface TaskProps {
@@ -9,16 +11,11 @@ interface TaskProps {
   limitDate: Date;
 }
 
-const formatDate = (date: Date): string => {
-  const day = String(date.getDate()).padStart(2, "0");
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const year = date.getFullYear();
-  return `${day}/${month}/${year}`;
-};
-
 export default function Task({ id, name, cost, limitDate }: TaskProps) {
-  const formattedDate: string = formatDate(new Date(limitDate));
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+
+  const date = parseISO(String(limitDate));
+  const formattedDate = format(date, "dd/MM/yyyy", { locale: ptBR });
 
   const handleOpenModalUpdate = () => {
     setIsUpdateModalOpen((prev) => !prev);

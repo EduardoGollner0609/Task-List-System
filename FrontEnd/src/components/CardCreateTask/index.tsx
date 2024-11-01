@@ -37,7 +37,7 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
     const taskData: TaskData = {
       name,
       cost,
-      limitDate: new Date(),
+      limitDate,
     };
     mutate(taskData);
   };
@@ -56,6 +56,12 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
         <label>Data Limite</label>
         <input
           type="date"
+          value={limitDate}
+          onChange={(event) => setLimitDate(event.target.value)}
+        />
+        <label>Horário</label>
+         <input
+          type="time"
           value={limitDate}
           onChange={(event) => setLimitDate(event.target.value)}
         />

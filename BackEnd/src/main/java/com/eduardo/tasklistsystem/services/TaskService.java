@@ -34,8 +34,7 @@ public class TaskService {
 	@Transactional(readOnly = true)
 	public TaskDTO findById(Long id) {
 		return new TaskDTO(
-				repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada."))
-				);
+				repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada.")));
 	}
 
 	@Transactional(propagation = Propagation.SUPPORTS)
@@ -57,6 +56,7 @@ public class TaskService {
 		task.setName(dto.getName());
 		task.setCost(dto.getCost());
 		task.setLimitDate(dto.getLimitDate());
+		task.setLimitTime(dto.getLimitTime());
 	}
 
 }
