@@ -31,6 +31,7 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
   const [name, setName] = useState("");
   const [cost, setCost] = useState(0);
   const [limitDate, setLimitDate] = useState("");
+  const [limitTime, setLimitTime] = useState("");
   const { mutate } = useTaskDataMutate();
 
   const submit = () => {
@@ -38,6 +39,7 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
       name,
       cost,
       limitDate,
+      limitTime
     };
     mutate(taskData);
   };
@@ -58,12 +60,13 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
           type="date"
           value={limitDate}
           onChange={(event) => setLimitDate(event.target.value)}
+          required
         />
         <label>Horário</label>
          <input
           type="time"
-          value={limitDate}
-          onChange={(event) => setLimitDate(event.target.value)}
+          value={limitTime}
+          onChange={(event) => setLimitTime(event.target.value)}
         />
       </form>
       <button onClick={submit} className="btn-create-task-submit">

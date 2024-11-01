@@ -9,11 +9,12 @@ interface TaskProps {
   name: string;
   cost: number;
   limitDate: Date;
+  limitTime: string;
 }
 
-export default function Task({ id, name, cost, limitDate }: TaskProps) {
+export default function Task({ id, name, cost, limitDate, limitTime }: TaskProps) {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-
+console.log(limitTime);
   const date = parseISO(String(limitDate));
   const formattedDate = format(date, "dd/MM/yyyy", { locale: ptBR });
 
@@ -28,6 +29,7 @@ export default function Task({ id, name, cost, limitDate }: TaskProps) {
         <p>{name}</p>
         <p>Custo: R${cost.toFixed(2)}</p>
         <p>Data limite: {formattedDate}</p>
+        <p>Horario: {limitTime}</p>
         <div className="task-icons-functions">
           <ion-icon
             name="create-outline"

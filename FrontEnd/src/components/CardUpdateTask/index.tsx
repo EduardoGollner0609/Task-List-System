@@ -8,6 +8,7 @@ interface CardUpdateTaskProps {
   name: string;
   cost: number;
   limitDate: Date;
+  limitTime: string;
   closeModal(): void;
 }
 
@@ -36,16 +37,16 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
   const { mutate } = useTaskDataMutateUpdate();
   const [name, setName] = useState(props.name);
   const [cost, setCost] = useState(props.cost);
-  const [limitDate, setLimitDate] = useState(
-    props.limitDate
-  );
+  const [limitDate, setLimitDate] = useState(props.limitDate);
+  const [limitTime, setLimitTime] = useState(props.limitTime);
 
   const submit = () => {
     const taskData: TaskData = {
       id,
       name,
       cost,
-      limitDate
+      limitDate,
+      limitTime
     };
 
     mutate(taskData);
@@ -77,6 +78,12 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
           type="date"
           value={limitDate}
           onChange={(event) => setLimitDate(event.target.value)}
+        />
+        <label>Horario</label>
+        <input
+          type="time"
+          value={limitTime}
+          onChange={(event) => setLimitTime(event.target.value)}
         />
       </form>
       <button onClick={submit} className="btn-update-task-submit">

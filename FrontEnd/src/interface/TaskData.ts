@@ -2,5 +2,6 @@ export interface TaskData {
     id?: number,
     name: string,
     cost: number,
-    limitDate: Date
+    limitDate: Date,
+    limitTime: string
 }

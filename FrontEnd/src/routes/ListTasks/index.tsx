@@ -23,12 +23,14 @@ export default function ListTasks() {
               name: string;
               cost: number;
               limitDate: Date;
+              limitTime: string;
             }) => (
               <Task
                 id={taskData.id}
                 name={taskData.name}
                 cost={taskData.cost}
                 limitDate={taskData.limitDate}
+                limitTime={taskData.limitTime}
               />
             )
           )}
