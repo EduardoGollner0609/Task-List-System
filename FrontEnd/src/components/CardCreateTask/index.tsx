@@ -34,14 +34,25 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
   const [limitTime, setLimitTime] = useState("");
   const { mutate } = useTaskDataMutate();
 
+  function validatedName (name: string) {
+    if (!name.trim() || name.length < 5) {
+      return false;
+    }
+    return true;
+  };
+
   const submit = () => {
-    const taskData: TaskData = {
-      name,
-      cost,
-      limitDate,
-      limitTime
-    };
-    mutate(taskData);
+    if (validatedName(name) == false) {
+      alert("Olá");
+    } else {
+      const taskData: TaskData = {
+        name,
+        cost,
+        limitDate,
+        limitTime,
+      };
+      mutate(taskData);
+    }
   };
 
   return (
@@ -53,8 +64,18 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
 
       <h1>Criar tarefa</h1>
       <form className="input-container">
-        <Input label="Nome" placeHolder="Digite a tarefa" value={name} updateValue={setName} />
-        <Input label="Custo" placeHolder="Digite o custo" value={cost} updateValue={setCost} />
+        <Input
+          label="Nome"
+          placeHolder="Digite a tarefa"
+          value={name}
+          updateValue={setName}
+        />
+        <Input
+          label="Custo"
+          placeHolder="Digite o custo"
+          value={cost}
+          updateValue={setCost}
+        />
         <label>Data Limite</label>
         <input
           type="date"
@@ -63,7 +84,7 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
           required
         />
         <label>Horário</label>
-         <input
+        <input
           type="time"
           value={limitTime}
           onChange={(event) => setLimitTime(event.target.value)}
