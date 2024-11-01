@@ -5,9 +5,12 @@ import java.time.LocalTime;
 
 import com.eduardo.tasklistsystem.entities.Task;
 
+import jakarta.validation.constraints.Size;
+
 public class TaskDTO {
 
 	private Long id;
+	@Size(min = 5, message = "O ome deve ter pelo menos 5 caracteres.")
 	private String name;
 	private Double cost;
 	private LocalDate limitDate;

@@ -19,6 +19,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.eduardo.tasklistsystem.dto.TaskDTO;
 import com.eduardo.tasklistsystem.services.TaskService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/tasks")
 public class TaskController {
@@ -40,7 +42,7 @@ public class TaskController {
 	}
 
 	@PostMapping
-	public ResponseEntity<TaskDTO> insert(@RequestBody TaskDTO dto) {
+	public ResponseEntity<TaskDTO> insert(@RequestBody @Valid TaskDTO dto) {
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).body(dto);
@@ -53,7 +55,7 @@ public class TaskController {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<TaskDTO> update(@PathVariable Long id, @RequestBody TaskDTO dto) {
+	public ResponseEntity<TaskDTO> update(@PathVariable Long id, @RequestBody @Valid TaskDTO dto) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
