@@ -60,7 +60,7 @@ public class TaskController {
 		return ResponseEntity.ok().body(dto);
 	}
 	
-	@PutMapping(value = "/{id}")
+	@PutMapping(value = "/{id}/up")
 	public ResponseEntity<Void> riseTask(@PathVariable Long id) {
 		service.riseTask(id);
 		return ResponseEntity.noContent().build();

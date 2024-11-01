@@ -23,7 +23,7 @@ export default function Task({
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
     useState(false);
-
+    const { mutate } = useTaskDataMutateRiseTask();
   console.log(limitTime);
 
   const handleOpenModalUpdate = () => {
