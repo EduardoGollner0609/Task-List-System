@@ -3,6 +3,7 @@ import CardUpdateTask from "../CardUpdateTask";
 import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import "./styles.css";
+import CardConfirmRemove from "../CardConfirmRemove";
 
 interface TaskProps {
   id: number;
@@ -10,13 +11,6 @@ interface TaskProps {
   cost: number;
   limitDate: Date;
   limitTime: string;
-}
-
-function checkCost(cost: number) {
-  const cardTask = document.querySelector(".card-task");
-  if (cost >= 1000.0) {
-    cardTask?.classList.add("card-cost-bigger-and-1000");
-  }
 }
 
 export default function Task({
@@ -69,6 +63,7 @@ export default function Task({
           <ion-icon name="trash-outline"></ion-icon>
         </div>
       </div>
+      <CardConfirmRemove />
       {isUpdateModalOpen && (
         <CardUpdateTask
           id={id}
