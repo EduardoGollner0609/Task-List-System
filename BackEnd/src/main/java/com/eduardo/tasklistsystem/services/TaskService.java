@@ -1,5 +1,6 @@
 package com.eduardo.tasklistsystem.services;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,16 @@ public class TaskService {
 		Task task = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada."));
 		copyDtoToEntity(task, dto);
 		return new TaskDTO(repository.save(task));
+	}
+
+	@Transactional
+	public void riseTask(Long id) {
+		Task task = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada."));
+		Task taskAbove = repository.findByOrderApresentation(task.getOrderApresentation() + 1)
+				.orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada."));
+		task.setOrderApresentation(task.getOrderApresentation() + 1);
+		taskAbove.setOrderApresentation(taskAbove.getOrderApresentation() - 1);
+		repository.saveAll(Arrays.asList(task, taskAbove));
 	}
 
 	private void copyDtoToEntity(Task task, TaskDTO dto) {

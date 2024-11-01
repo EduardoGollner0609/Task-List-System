@@ -56,12 +56,16 @@ export default function Task({
   return (
     <>
       <div className={`card-task ${costClass}`}>
-        <p>ID: {id}</p>
+        <p>{id}</p>
         <p>{name}</p>
-        <p>Custo: R${cost.toFixed(2)}</p>
-        <p>Data limite: {limitDateDisplay(limitDate)}</p>
-        <p>Horario: {limitTimeDisplay(limitTime)}</p>
+        <p>R${cost.toFixed(2)}</p>
+        <p>{limitDateDisplay(limitDate)}</p>
+        <p>{limitTimeDisplay(limitTime)}</p>
         <div className="task-icons-functions">
+   
+        <ion-icon name="arrow-up-outline"></ion-icon>
+        <ion-icon name="arrow-up-outline"></ion-icon>
+        
           <ion-icon
             name="create-outline"
             onClick={handleOpenModalUpdate}

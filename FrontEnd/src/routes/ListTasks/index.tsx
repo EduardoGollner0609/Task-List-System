@@ -17,6 +17,7 @@ export default function ListTasks() {
       <h1 id="title-home-page">Lista de Tarefas</h1>
       <section className="section-list-tasks">
         <div className="list-tasks">
+      
           {data?.map(
             (taskData: {
               id: number;

@@ -39,3 +39,12 @@
   font-size: 24px;
 }
 
+.list-task-header {
+  border: 2px solid #fff;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 10px
+}
