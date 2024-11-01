@@ -12,6 +12,13 @@ interface TaskProps {
   limitTime: string;
 }
 
+function checkCost(cost: number) {
+  const cardTask = document.querySelector(".card-task");
+  if (cost >= 1000.0) {
+    cardTask?.classList.add("card-cost-bigger-and-1000");
+  }
+}
+
 export default function Task({
   id,
   name,
@@ -43,9 +50,12 @@ export default function Task({
     }
   };
 
+  const costClass =
+    cost >= 1000 ? "card-task-cost-bigger" : "card-task-cost-smaller";
+
   return (
     <>
-      <div className="card-task">
+      <div className={`card-task ${costClass}`}>
         <p>ID: {id}</p>
         <p>{name}</p>
         <p>Custo: R${cost.toFixed(2)}</p>

@@ -1,5 +1,4 @@
 .card-task {
-  border: 2px solid #fff;
   border-radius: 20px;
   padding: 10px;
   display: flex;
@@ -8,12 +7,12 @@
   gap: 20px;
 }
 
-.card-task p{
+.card-task p {
   color: #fff;
   font-size: 18px;
 }
 
-.task-icons-functions{
+.task-icons-functions {
   color: #fff;
   font-size: 24px;
   display: flex;
@@ -21,5 +20,13 @@
 }
 
 .task-icons-functions ion-icon {
-cursor: pointer;
+  cursor: pointer;
+}
+
+.card-task-cost-bigger {
+  border: 2px solid red;
+}
+
+.card-task-cost-smaller {
+  border: 2px solid #fff;
 }

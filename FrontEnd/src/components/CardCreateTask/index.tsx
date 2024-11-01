@@ -43,7 +43,7 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
 
   const submit = () => {
     if (validatedName(name) == false) {
-      alert("Olá");
+      alert("O nome não pode ser vazio nem mesmo ter menos que 5 caracteres");
     } else {
       const taskData: TaskData = {
         name,
