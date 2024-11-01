@@ -21,10 +21,16 @@ export default function Task({
   limitTime,
 }: TaskProps) {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] = useState(false);
+
   console.log(limitTime);
 
   const handleOpenModalUpdate = () => {
     setIsUpdateModalOpen((prev) => !prev);
+  };
+
+  const handleOpenModalConfirmRemove = () => {
+    setIsConfirmDeleteModalOpen((prev) => !prev);
   };
 
   const limitDateDisplay = (date: Date) => {
@@ -60,17 +66,23 @@ export default function Task({
             name="create-outline"
             onClick={handleOpenModalUpdate}
           ></ion-icon>
-          <ion-icon name="trash-outline"></ion-icon>
+          <ion-icon name="trash-outline"   onClick={handleOpenModalConfirmRemove}></ion-icon>
         </div>
       </div>
-      <CardConfirmRemove />
+     
       {isUpdateModalOpen && (
         <CardUpdateTask
           id={id}
           name={name}
           cost={cost}
           limitDate={limitDate}
-          closeModal={handleOpenModalUpdate}
+          limitTime = {limitTime}
+          closeModal={handleOpenModalUpdate}        />
+      )}
+        {isConfirmDeleteModalOpen && (
+        <CardConfirmRemove
+          id={id}
+          closeModal={handleOpenModalConfirmRemove}
         />
       )}
     </>
