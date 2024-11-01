@@ -15,7 +15,6 @@ public class TaskDTO {
 	@Size(min = 5, message = "O nome deve ter pelo menos 5 caracteres.")
 	private String name;
 	private Double cost;
-	private Integer orderApresentation;
 	private LocalDate limitDate;
 	private LocalTime limitTime;
 
@@ -26,7 +25,6 @@ public class TaskDTO {
 		id = task.getId();
 		name = task.getName();
 		cost = task.getCost();
-		orderApresentation = task.getOrderApresentation();
 		limitDate = task.getLimitDate();
 		limitTime = task.getLimitTime();
 	}
@@ -69,14 +67,6 @@ public class TaskDTO {
 
 	public void setLimitDate(LocalDate limitDate) {
 		this.limitDate = limitDate;
-	}
-
-	public Integer getOrderApresentation() {
-		return orderApresentation;
-	}
-
-	public void setOrderApresentation(Integer orderApresentation) {
-		this.orderApresentation = orderApresentation;
 	}
 
 }
