@@ -61,9 +61,9 @@ public class TaskController {
 	}
 	
 	@PutMapping(value = "/{id}/up")
-	public ResponseEntity<TaskDTO> riseTask(@PathVariable Long id) {
-	TaskDTO dto = service.riseTask(id);
-	return ResponseEntity.ok().body(dto);
+	public ResponseEntity<Void> riseTask(@PathVariable Long id) {
+	 service.riseTask(id);
+	return ResponseEntity.ok().build();
 	}
 
 }
