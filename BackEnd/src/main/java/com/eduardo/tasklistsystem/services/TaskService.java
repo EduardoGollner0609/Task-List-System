@@ -54,16 +54,29 @@ public class TaskService {
 	}
 
 	@Transactional
-	public void riseTask(Long id) {
+	public void upTask(Long id) {
 		Task task = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada."));
 		if (task.getOrderApresentation() == 1) {
-			throw new IllegalArgumentException("essa tarefa já está na primeira posição.");
+			throw new IllegalArgumentException("Essa tarefa já está na primeira posição.");
 		}
-		Task taskAbove = repository.findByOrderApresentation(task.getOrderApresentation() - 1)
+		Task taskUp = repository.findByOrderApresentation(task.getOrderApresentation() - 1)
 				.orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada."));
 		task.setOrderApresentation(task.getOrderApresentation() - 1);
-		taskAbove.setOrderApresentation(taskAbove.getOrderApresentation() + 1);
-		repository.saveAll(Arrays.asList(task, taskAbove));
+		taskUp.setOrderApresentation(taskUp.getOrderApresentation() + 1);
+		repository.saveAll(Arrays.asList(task, taskUp));
+	}
+
+	@Transactional
+	public void downTask(Long id) {
+		Task task = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada"));
+		if (task.getOrderApresentation() == repository.quantityTasks()) {
+			throw new IllegalArgumentException("Essa tarefa já está na última posição.");
+		}
+		Task taskDown = repository.findByOrderApresentation(task.getOrderApresentation() + 1)
+				.orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada"));
+		task.setOrderApresentation(task.getOrderApresentation() + 1);
+		taskDown.setOrderApresentation(taskDown.getOrderApresentation() - 1);
+		repository.saveAll(Arrays.asList(task, taskDown));
 	}
 
 	private void copyDtoToEntity(Task task, TaskDTO dto) {

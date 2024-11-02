@@ -61,8 +61,8 @@ public class TaskController {
 	}
 	
 	@PutMapping(value = "/{id}/up")
-	public ResponseEntity<Void> riseTask(@PathVariable Long id) {
-	 service.riseTask(id);
+	public ResponseEntity<Void> upTask(@PathVariable Long id) {
+	 service.upTask(id);
 	return ResponseEntity.ok().build();
 	}
 
