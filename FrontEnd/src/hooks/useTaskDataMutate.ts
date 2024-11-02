@@ -1,8 +1,13 @@
-import { useMutation, useQueryClient } from "react-query";
 import axios from "axios";
+import { useMutation, useQueryClient } from "react-query";
 import { TaskData } from "../interface/TaskData";
 
 const API_URL = "http://localhost:8080";
+
+type MoveTaskParams = {
+  taskId: number;
+  direction: "UP" | "DOWN";
+};
 
 const postData = async (data: TaskData) => {
   const response = axios.post(API_URL + "/tasks", data);
@@ -14,12 +19,10 @@ const putData = async (data: TaskData) => {
   return response;
 };
 
-const putDataUpTask = async (taskId: number) => {
-  await axios.put(`${API_URL}/tasks/${taskId}/up`);
-};
-
-const putDataDownTask = async (taskId: number) => {
- await axios.put(`${API_URL}/tasks/${taskId}/down`);
+const putDataTask = async ({ taskId, direction }: MoveTaskParams) => {
+  const endpoint =
+    direction === "UP" ? `${API_URL}/tasks/${taskId}/up` : `${API_URL}/tasks/${taskId}/down`;
+  await axios.put(endpoint);
 };
 
 const deleteData = async (id: number) => {
@@ -54,24 +57,11 @@ export function useTaskMutateDelete() {
   return mutate;
 }
 
-export function useTaskDataMutatePositionUp() {
+export function useTaskDataMutatePosition() {
   const queryClient = useQueryClient();
 
   const mutate = useMutation({
-    mutationFn: putDataUpTask,
-    onSuccess: () => {
-      queryClient.invalidateQueries(["task-data"]);
-    },
-  });
-
-  return mutate;
-}
-
-export function useTaskDataMutatePositionDown() {
-  const queryClient = useQueryClient();
-
-  const mutate = useMutation({
-    mutationFn: putDataDownTask,
+    mutationFn: putDataTask,
     onSuccess: () => {
       queryClient.invalidateQueries(["task-data"]);
     },

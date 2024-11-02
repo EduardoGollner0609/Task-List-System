@@ -1,10 +1,10 @@
-import { useState } from "react";
-import CardUpdateTask from "../CardUpdateTask";
 import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import "./styles.css";
+import { useState } from "react";
+import { useTaskDataMutatePosition } from "../../hooks/useTaskDataMutate";
 import CardConfirmRemove from "../CardConfirmRemove";
-import { useTaskDataMutatePositionDown, useTaskDataMutatePositionUp } from "../../hooks/useTaskDataMutate";
+import CardUpdateTask from "../CardUpdateTask";
+import "./styles.css";
 
 interface TaskProps {
   id: number;
@@ -24,9 +24,7 @@ export default function Task({
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
     useState(false);
-  const { mutate: upTask } = useTaskDataMutatePositionUp();
-  const { mutate: downTask } = useTaskDataMutatePositionDown();
-
+  const { mutate: moveTask } = useTaskDataMutatePosition();
 
   const handleOpenModalUpdate = () => {
     setIsUpdateModalOpen((prev) => !prev);
@@ -56,12 +54,8 @@ export default function Task({
   const costClass =
     cost >= 1000 ? "card-task-cost-bigger" : "card-task-cost-smaller";
 
-  const handleUpTask = (taskId: number) => {
-    upTask(taskId);
-  };
-
-  const handleDownTask = (taskId: number) => {
-    downTask(taskId);
+  const handleMoveTask = (taskId: number, direction: "UP" | "DOWN") => {
+    moveTask({ taskId, direction });
   };
 
   return (
@@ -75,9 +69,12 @@ export default function Task({
         <div className="task-icons-functions">
           <ion-icon
             name="arrow-up-outline"
-            onClick={() => handleUpTask(id)}
+            onClick={() => handleMoveTask(id, "UP")}
           ></ion-icon>
-          <ion-icon name="arrow-down-outline"  onClick={() => handleDownTask(id)}></ion-icon>
+          <ion-icon
+            name="arrow-down-outline"
+            onClick={() => handleMoveTask(id, "DOWN")}
+          ></ion-icon>
 
           <ion-icon
             name="create-outline"
