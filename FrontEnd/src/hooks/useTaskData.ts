@@ -17,7 +17,7 @@ export function useTaskData() {
   const query = useQuery({
     queryFn: fetchData,
     queryKey: ["task-data"],
-    retry: 1,
+    retry: 2,
   });
 
   return {

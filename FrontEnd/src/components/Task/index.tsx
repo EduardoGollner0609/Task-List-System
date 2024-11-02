@@ -4,7 +4,7 @@ import { format, parseISO } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import "./styles.css";
 import CardConfirmRemove from "../CardConfirmRemove";
-import { useTaskDataMutatePositionUp } from "../../hooks/useTaskDataMutate";
+import { useTaskDataMutatePositionDown, useTaskDataMutatePositionUp } from "../../hooks/useTaskDataMutate";
 
 interface TaskProps {
   id: number;
@@ -24,7 +24,9 @@ export default function Task({
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
     useState(false);
-  const { mutate: riseTask } = useTaskDataMutatePositionUp();
+  const { mutate: upTask } = useTaskDataMutatePositionUp();
+  const { mutate: downTask } = useTaskDataMutatePositionDown();
+
 
   const handleOpenModalUpdate = () => {
     setIsUpdateModalOpen((prev) => !prev);
@@ -54,8 +56,12 @@ export default function Task({
   const costClass =
     cost >= 1000 ? "card-task-cost-bigger" : "card-task-cost-smaller";
 
-  const handleRiseTask = (taskId: number) => {
-    riseTask(taskId);
+  const handleUpTask = (taskId: number) => {
+    upTask(taskId);
+  };
+
+  const handleDownTask = (taskId: number) => {
+    downTask(taskId);
   };
 
   return (
@@ -69,9 +75,9 @@ export default function Task({
         <div className="task-icons-functions">
           <ion-icon
             name="arrow-up-outline"
-            onClick={() => handleRiseTask(id)}
+            onClick={() => handleUpTask(id)}
           ></ion-icon>
-          <ion-icon name="arrow-down-outline"></ion-icon>
+          <ion-icon name="arrow-down-outline"  onClick={() => handleDownTask(id)}></ion-icon>
 
           <ion-icon
             name="create-outline"
