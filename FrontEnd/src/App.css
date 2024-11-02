@@ -6,6 +6,8 @@
   rgba(26, 125, 250, 1) 0%,
   rgba(209, 0, 255, 1) 100%
 );
+--color-secondary: rgb(22, 118, 235);
+--color-tertiary: rgb(183, 13, 221);
 }
 * {
   margin: 0;

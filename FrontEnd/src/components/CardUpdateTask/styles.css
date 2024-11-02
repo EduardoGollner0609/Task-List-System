@@ -56,8 +56,8 @@
     font-size: 18px;
     outline: none;
     color: #fff;
-    border-bottom: 1px solid rgb(6, 121, 117);
-    background-color: rgba(5, 154, 150, 1);
+    border-radius: 10px;
+    background-color: var(--color-secondary);
   }
 }
 
@@ -71,7 +71,7 @@ input::placeholder {
   margin: 0 auto;
   border-radius: 10px;
   font-size: 16px;
-  background-color: rgb(6, 121, 117);
+  background-color: var(--color-tertiary);
   color: #fff;
   cursor: pointer;
   padding: 5px;

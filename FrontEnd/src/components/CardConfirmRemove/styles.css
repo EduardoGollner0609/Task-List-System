@@ -42,7 +42,7 @@ padding: 10px;
 font-size: 18px;
 border-radius: 20px;
 border: none;
-background-color: rgb(6, 121, 117);
+background-color: var(--color-tertiary);
 color: #fff;
 cursor: pointer;
 }
