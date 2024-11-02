@@ -52,6 +52,7 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
         limitTime,
       };
       mutate(taskData);
+      closeModal();
     }
   };
 
