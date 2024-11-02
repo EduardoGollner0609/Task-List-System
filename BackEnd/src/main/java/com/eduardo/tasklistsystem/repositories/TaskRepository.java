@@ -17,5 +17,5 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
 	List<Task> findAllByOrderByOrderApresentationAsc();
 	
-	Optional<Task> findByOrderApresentation(Integer OrderApresentation);
+	Optional<Task> findByOrderApresentation(Integer orderApresentation);
 }

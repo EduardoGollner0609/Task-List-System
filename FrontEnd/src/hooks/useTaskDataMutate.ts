@@ -14,16 +14,16 @@ const putData = async (data: TaskData) => {
   return response;
 };
 
-const putDataUpTask = async (id: number) => {
-  axios.put(`${API_URL}/tasks/${id}/up`);
+const putDataUpTask = async (taskId: number) => {
+  await axios.put(`${API_URL}/tasks/${taskId}/up`);
 };
 
-const putDataDownTask = async (id: number) => {
-  axios.put(`${API_URL}/tasks/${id}/down`);
+const putDataDownTask = async (data: TaskData) => {
+  axios.put(`${API_URL}/tasks/${data.id}/down`);
 };
 
 const deleteData = async (id: number) => {
-  axios.delete(`${API_URL}/tasks/${id}`);
+  await axios.delete(`${API_URL}/tasks/${id}`);
 };
 
 export function useTaskDataMutateUpdate() {
@@ -54,14 +54,11 @@ export function useTaskMutateDelete() {
   return mutate;
 }
 
-export function useTaskDataMutatePosition(postionValue: string) {
+export function useTaskDataMutatePositionUp() {
   const queryClient = useQueryClient();
 
-  const mutationFn = postionValue === "UP" ? putDataUpTask : putDataDownTask;
-
   const mutate = useMutation({
-    mutationFn,
-    retry: 2,
+    mutationFn: putDataUpTask,
     onSuccess: () => {
       queryClient.invalidateQueries(["task-data"]);
     },

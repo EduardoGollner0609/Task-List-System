@@ -20,7 +20,7 @@ public class Task {
 	private Double cost;
 	private LocalDate limitDate;
 	private LocalTime limitTime;
-	@Column(unique = true)
+
 	private Integer orderApresentation;
 
 	public Task() {

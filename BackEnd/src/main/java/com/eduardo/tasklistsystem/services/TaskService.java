@@ -54,13 +54,17 @@ public class TaskService {
 	}
 
 	@Transactional
-	public void riseTask(Long id) {
+	public TaskDTO riseTask(Long id) {
 		Task task = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada."));
-		Task taskAbove = repository.findByOrderApresentation(task.getOrderApresentation() + 1)
+		if (task.getOrderApresentation() == 1) {
+			throw new IllegalArgumentException("essa tarefa já está na primeira posição.");
+		}
+		Task taskAbove = repository.findByOrderApresentation(task.getOrderApresentation() - 1)
 				.orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada."));
-		task.setOrderApresentation(task.getOrderApresentation() + 1);
-		taskAbove.setOrderApresentation(taskAbove.getOrderApresentation() - 1);
-		repository.saveAll(Arrays.asList(task, taskAbove));
+		task.setOrderApresentation(task.getOrderApresentation() - 1);
+		taskAbove.setOrderApresentation(taskAbove.getOrderApresentation() + 1);
+repository.save(taskAbove);
+return new TaskDTO(repository.save(task));
 	}
 
 	private void copyDtoToEntity(Task task, TaskDTO dto) {
