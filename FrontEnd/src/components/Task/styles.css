@@ -16,7 +16,17 @@
   color: #fff;
   font-size: 24px;
   display: flex;
-  gap: 20px;
+  gap: 15px;
+}
+
+.task-icons-functions-top {
+  display: flex;
+  gap: 5px;
+}
+
+.task-icons-functions-bottom {
+  display: flex;
+  gap: 5px;
 }
 
 .task-icons-functions ion-icon {
@@ -29,4 +39,19 @@
 
 .card-task-cost-smaller {
   border: 2px solid #fff;
+}
+
+@media (max-width: 700px) {
+  .card-task {
+    text-align: center;
+    gap: 10px;
+    flex-direction: column;
+  }
+  .task-icons-functions {
+    font-size: 22px;
+  }
+  .card-task p {
+    font-size: 16px;
+  }
+  
 }

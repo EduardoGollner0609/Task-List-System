@@ -61,29 +61,32 @@ export default function Task({
   return (
     <>
       <div className={`card-task ${costClass}`}>
-        <p>{id}</p>
-        <p>{name}</p>
-        <p>R${cost.toFixed(2)}</p>
-        <p>{limitDateDisplay(limitDate)}</p>
-        <p>{limitTimeDisplay(limitTime)}</p>
+        <p>ID: {id}</p>
+        <p>Tarefa: {name}</p>
+        <p>Custo: R${cost.toFixed(2)}</p>
+        <p>Prazo: {limitDateDisplay(limitDate)}</p>
+        <p>Horário: {limitTimeDisplay(limitTime)}</p>
         <div className="task-icons-functions">
-          <ion-icon
-            name="arrow-up-outline"
-            onClick={() => handleMoveTask(id, "UP")}
-          ></ion-icon>
-          <ion-icon
-            name="arrow-down-outline"
-            onClick={() => handleMoveTask(id, "DOWN")}
-          ></ion-icon>
-
-          <ion-icon
-            name="create-outline"
-            onClick={handleOpenModalUpdate}
-          ></ion-icon>
-          <ion-icon
-            name="trash-outline"
-            onClick={handleOpenModalConfirmRemove}
-          ></ion-icon>
+          <div className="task-icons-functions-top">
+            <ion-icon
+              name="arrow-up-outline"
+              onClick={() => handleMoveTask(id, "UP")}
+            ></ion-icon>
+            <ion-icon
+              name="arrow-down-outline"
+              onClick={() => handleMoveTask(id, "DOWN")}
+            ></ion-icon>
+          </div>
+          <div className="task-icons-functions-bottom">
+            <ion-icon
+              name="create-outline"
+              onClick={handleOpenModalUpdate}
+            ></ion-icon>
+            <ion-icon
+              name="trash-outline"
+              onClick={handleOpenModalConfirmRemove}
+            ></ion-icon>
+          </div>
         </div>
       </div>
 
