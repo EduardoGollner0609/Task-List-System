@@ -5,11 +5,7 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
-  background: linear-gradient(
-    331deg,
-    rgba(6, 199, 109, 1) 0%,
-    rgba(5, 154, 150, 1) 100%
-  );
+  background: var(--color-primary);
   background-repeat: no-repeat;
   position: fixed;
   top: 50%;
