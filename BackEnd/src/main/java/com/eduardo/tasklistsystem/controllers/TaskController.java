@@ -59,11 +59,17 @@ public class TaskController {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
-	
+
 	@PutMapping(value = "/{id}/up")
 	public ResponseEntity<Void> upTask(@PathVariable Long id) {
-	 service.upTask(id);
-	return ResponseEntity.ok().build();
+		service.upTask(id);
+		return ResponseEntity.ok().build();
+	}
+
+	@PutMapping(value = "/{id}/down")
+	public ResponseEntity<Void> downTask(@PathVariable Long id) {
+		service.downTask(id);
+		return ResponseEntity.ok().build();
 	}
 
 }
