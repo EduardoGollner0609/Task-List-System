@@ -5,7 +5,6 @@ import { useTaskDataMutatePosition } from "../../hooks/useTaskDataMutate";
 import CardConfirmRemove from "../CardConfirmRemove";
 import CardUpdateTask from "../CardUpdateTask";
 import "./styles.css";
-import CardError from "../CardError";
 
 interface TaskProps {
   id: number;
