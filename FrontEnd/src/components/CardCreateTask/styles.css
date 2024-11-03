@@ -75,3 +75,7 @@ input::placeholder {
   cursor: pointer;
   padding: 5px;
 }
+
+.card-create-task-top-exit:hover {
+  border: 2px solid var(--color-tertiary);
+  }
