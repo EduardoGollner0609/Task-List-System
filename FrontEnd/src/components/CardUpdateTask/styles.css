@@ -67,7 +67,7 @@ input::placeholder {
 
 .card-update-task button {
   border: none;
-  width: 400px;
+  width: 90%;
   margin: 0 auto;
   border-radius: 10px;
   font-size: 16px;
@@ -83,4 +83,17 @@ border: 2px solid var(--color-tertiary);
 
 .btn-update-task-submit:hover {
   background-color: var(--color-quartiary);
+}
+
+@media (max-width: 576px) {
+  .card-update-task-top-exit {
+    width: 90px;
+  }
+  .card-update-task-top-exit ion-icon {
+    font-size: 20px;
+  }
+
+  .card-update-task-top-exit p {
+    font-size: 16px;
+  }
 }

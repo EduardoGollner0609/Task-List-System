@@ -1,7 +1,5 @@
 .card-introduction {
   text-align: center;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border-radius: 10px;
   max-height: 80%;
   min-height: 400px;

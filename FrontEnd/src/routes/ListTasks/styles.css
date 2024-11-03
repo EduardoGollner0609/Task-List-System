@@ -16,7 +16,6 @@
 
 #title-list-tasks {
   color: #fff;
-  padding-top: 28px;
   text-transform: uppercase;
   padding: 0px;
 }
@@ -43,7 +42,7 @@
 .list-tasks {
   width: 100%;
   border: 2px solid #fff;
-  height: 620px;
+  height: 85vh;
   overflow-x: auto;
   border-radius: 20px;
   padding: 20px;
@@ -80,4 +79,33 @@
   align-items: center;
   gap: 20px;
   padding: 10px;
+}
+
+@media (max-width: 576px) {
+  .top-list-tasks-icon-exit p {
+    font-size: 18px;
+  }
+
+  .top-list-tasks-icon-exit ion-icon {
+    font-size: 20px;
+  }
+
+  #title-list-tasks {
+    font-size: 25px;
+  }
+
+  .top-list-tasks-icon-exit {
+    padding: 5px;
+    gap: 7px;
+  }
+}
+
+@media (max-width: 400px) {
+  .top-list-tasks-icon-exit p {
+    font-size: 16px;
+  }
+
+  #title-list-tasks {
+    font-size: 22px;
+  }
 }
