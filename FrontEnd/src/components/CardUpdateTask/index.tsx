@@ -46,7 +46,7 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
       name,
       cost,
       limitDate,
-      limitTime
+      limitTime,
     };
 
     mutate(taskData);
