@@ -68,7 +68,7 @@ export function useTaskDataMutatePosition() {
     onSuccess: () => {
       queryClient.invalidateQueries(["task-data"]);
     },onError: (error) => {
-console.log("Erro: ", error);
+      throw error;
     },
   });
 
