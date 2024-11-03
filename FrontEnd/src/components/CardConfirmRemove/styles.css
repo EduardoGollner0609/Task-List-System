@@ -1,6 +1,7 @@
 .card-confirm-remove {
   border-radius: 20px;
-  height: 60vh;
+  height: 70vh;
+  max-height: 350px;
   border: 2px solid #fff;
   display: flex;
   justify-content: center;
@@ -24,6 +25,8 @@
 
 .card-confirm-remove-content {
   height: 50%;
+  width: 80%;
+  text-align: center;
   display: flex;
   flex-direction: column;
   gap: 50px;
@@ -45,6 +48,7 @@ border: none;
 background-color: var(--color-tertiary);
 color: #fff;
 cursor: pointer;
+margin-bottom: 20px;
 }
 
 .cards-confirm-btns button:hover {
