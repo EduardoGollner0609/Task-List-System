@@ -38,6 +38,9 @@ export function useTaskDataMutateUpdate() {
     onSuccess: () => {
       queryClient.invalidateQueries(["task-data"]);
     },
+    onError: () => {
+      alert("Ele já está no limite.");
+    }
   });
 
   return mutate;
@@ -64,6 +67,8 @@ export function useTaskDataMutatePosition() {
     mutationFn: putDataTask,
     onSuccess: () => {
       queryClient.invalidateQueries(["task-data"]);
+    },onError: (error) => {
+console.log("Erro: ", error);
     },
   });
 

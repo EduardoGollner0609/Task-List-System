@@ -5,6 +5,7 @@ import { useTaskDataMutatePosition } from "../../hooks/useTaskDataMutate";
 import CardConfirmRemove from "../CardConfirmRemove";
 import CardUpdateTask from "../CardUpdateTask";
 import "./styles.css";
+import CardError from "../CardError";
 
 interface TaskProps {
   id: number;
@@ -24,7 +25,8 @@ export default function Task({
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
     useState(false);
-  const { mutate: moveTask } = useTaskDataMutatePosition();
+  const [isCardErrorModalOpen, setIsCardErrorModalOpen] = useState(false);
+  const { mutateAsync } = useTaskDataMutatePosition();
 
   const handleOpenModalUpdate = () => {
     setIsUpdateModalOpen((prev) => !prev);
@@ -32,6 +34,10 @@ export default function Task({
 
   const handleOpenModalConfirmRemove = () => {
     setIsConfirmDeleteModalOpen((prev) => !prev);
+  };
+
+  const handleOpenModalError = () => {
+    setIsCardErrorModalOpen((prev) => !prev);
   };
 
   const limitDateDisplay = (date: Date) => {
@@ -51,11 +57,21 @@ export default function Task({
     }
   };
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const costClass =
     cost >= 1000 ? "card-task-cost-bigger" : "card-task-cost-smaller";
 
-  const handleMoveTask = (taskId: number, direction: "UP" | "DOWN") => {
-    moveTask({ taskId, direction });
+  const handleMoveTask = async (taskId: number, direction: "UP" | "DOWN") => {
+    try {
+     await mutateAsync({ taskId, direction });
+    } catch (error) {
+      const errorMsg = error.response
+        ? error.response.data.error
+        : "Erro desconhecido";
+      handleOpenModalError();
+      setErrorMessage(errorMsg);
+    }
   };
 
   return (
@@ -72,6 +88,7 @@ export default function Task({
               name="arrow-up-outline"
               onClick={() => handleMoveTask(id, "UP")}
             ></ion-icon>
+
             <ion-icon
               name="arrow-down-outline"
               onClick={() => handleMoveTask(id, "DOWN")}
@@ -102,6 +119,9 @@ export default function Task({
       )}
       {isConfirmDeleteModalOpen && (
         <CardConfirmRemove id={id} closeModal={handleOpenModalConfirmRemove} />
+      )}
+      {isCardErrorModalOpen && (
+        <CardError closeModal={handleOpenModalError} message={errorMessage} />
       )}
     </>
   );
