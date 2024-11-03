@@ -50,6 +50,7 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
     };
 
     mutate(taskData);
+    props.closeModal();
   };
 
   return (
