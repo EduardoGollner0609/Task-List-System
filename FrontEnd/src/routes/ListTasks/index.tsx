@@ -3,6 +3,7 @@ import Task from "../../components/Task";
 import { useTaskData } from "../../hooks/useTaskData";
 import CardCreateTask from "../../components/CardCreateTask";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ListTasks() {
   const { data } = useTaskData();
@@ -14,10 +15,17 @@ export default function ListTasks() {
 
   return (
     <main>
-      <h1 id="title-home-page">Lista de Tarefas</h1>
+      <div className="top-list-tasks">
+        <h1 id="title-list-tasks">Lista de Tarefas</h1>
+        <Link to="/">
+          <div className="top-list-tasks-icon-exit">
+            <ion-icon name="exit-outline"></ion-icon>
+            <p>Voltar</p>
+          </div>
+        </Link>
+      </div>
       <section className="section-list-tasks">
         <div className="list-tasks">
-      
           {data?.map(
             (taskData: {
               id: number;

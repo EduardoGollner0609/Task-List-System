@@ -1,14 +1,14 @@
 .section-home-page {
   padding: 20px;
-height: 80%;
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 #title-home-page {
-    text-align: center;
-    color: #fff;
-    padding-top: 28px;
-    text-transform: uppercase;
+  text-align: center;
+  color: #fff;
+  padding-top: 28px;
+  text-transform: uppercase;
 }

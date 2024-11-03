@@ -1,16 +1,49 @@
 .section-list-tasks {
-  padding: 20px;
+  padding: 0px 20px 20px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 30px;
   flex-direction: column;
 }
+.top-list-tasks {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+  height: 80px;
+}
+
+#title-list-tasks {
+  color: #fff;
+  padding-top: 28px;
+  text-transform: uppercase;
+  padding: 0px;
+}
+
+.top-list-tasks-icon-exit {
+  border: 2px solid #fff;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.top-list-tasks-icon-exit p {
+  font-size: 20px;
+}
+
+.top-list-tasks-icon-exit ion-icon {
+  font-size: 22px;
+}
 
 .list-tasks {
   width: 100%;
   border: 2px solid #fff;
-  height: 600px;
+  height: 620px;
   overflow-x: auto;
   border-radius: 20px;
   padding: 20px;
@@ -46,5 +79,5 @@
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  padding: 10px
+  padding: 10px;
 }
