@@ -35,7 +35,6 @@ public class TaskController {
 	}
 
 	@GetMapping(value = "/{id}")
-	@CrossOrigin
 	public ResponseEntity<TaskDTO> findById(@PathVariable Long id) {
 		TaskDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);

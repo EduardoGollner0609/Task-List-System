@@ -23,7 +23,7 @@ public class TaskService {
 	public TaskDTO insert(TaskDTO dto) {
 		Task task = new Task();
 		copyDtoToEntity(task, dto);
-		task.setOrderApresentation(repository.quantityTasks() + 1);
+		task.setOrderApresentation(repository.count() + 1);
 		return new TaskDTO(repository.save(task));
 	}
 
@@ -44,6 +44,7 @@ public class TaskService {
 			throw new ResourceNotFoundException("Tarefa não encontrada.");
 		}
 		repository.deleteById(id);
+		order();
 	}
 
 	@Transactional
@@ -69,7 +70,7 @@ public class TaskService {
 	@Transactional
 	public void downTask(Long id) {
 		Task task = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada"));
-		if (task.getOrderApresentation() == repository.quantityTasks()) {
+		if (task.getOrderApresentation() == repository.count()) {
 			throw new IllegalArgumentException("Essa tarefa já está na última posição.");
 		}
 		Task taskDown = repository.findByOrderApresentation(task.getOrderApresentation() + 1)
@@ -77,6 +78,14 @@ public class TaskService {
 		task.setOrderApresentation(task.getOrderApresentation() + 1);
 		taskDown.setOrderApresentation(taskDown.getOrderApresentation() - 1);
 		repository.saveAll(Arrays.asList(task, taskDown));
+	}
+
+	private void order() {
+		List<Task> tasks = repository.findAll();
+		for (int i = 0; i < repository.count(); i++) {
+			tasks.get(i).setOrderApresentation(i + 1L);
+		}
+		repository.saveAll(tasks);
 	}
 
 	private void copyDtoToEntity(Task task, TaskDTO dto) {

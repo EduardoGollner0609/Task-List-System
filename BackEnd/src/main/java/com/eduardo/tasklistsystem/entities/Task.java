@@ -21,13 +21,13 @@ public class Task {
 	private LocalDate limitDate;
 	private LocalTime limitTime;
 
-	private Integer orderApresentation;
+	private Long orderApresentation;
 
 	public Task() {
 	}
 
 	public Task(Long id, String name, Double cost, LocalDate limitDate, LocalTime limitTime,
-			Integer orderApresentation) {
+			Long orderApresentation) {
 		this.id = id;
 		this.name = name;
 		this.cost = cost;
@@ -67,11 +67,11 @@ public class Task {
 		this.limitDate = limitDate;
 	}
 
-	public Integer getOrderApresentation() {
+	public Long getOrderApresentation() {
 		return orderApresentation;
 	}
 
-	public void setOrderApresentation(Integer orderApresentation) {
+	public void setOrderApresentation(Long orderApresentation) {
 		this.orderApresentation = orderApresentation;
 	}
 
