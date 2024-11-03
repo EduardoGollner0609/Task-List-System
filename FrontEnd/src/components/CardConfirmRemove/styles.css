@@ -46,3 +46,7 @@ background-color: var(--color-tertiary);
 color: #fff;
 cursor: pointer;
 }
+
+.cards-confirm-btns button:hover {
+background-color: var(--color-quartiary);
+}

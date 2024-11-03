@@ -80,3 +80,7 @@ input::placeholder {
 .card-update-task-top-exit:hover {
 border: 2px solid var(--color-tertiary);
 }
+
+.btn-update-task-submit:hover {
+  background-color: var(--color-quartiary);
+}

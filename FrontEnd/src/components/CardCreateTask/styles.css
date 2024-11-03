@@ -78,4 +78,8 @@ input::placeholder {
 
 .card-create-task-top-exit:hover {
   border: 2px solid var(--color-tertiary);
-  }
+}
+
+.btn-create-task-submit:hover {
+  background-color: var(--color-quartiary);
+}
