@@ -64,7 +64,7 @@ export default function Task({
 
   const handleMoveTask = async (taskId: number, direction: "UP" | "DOWN") => {
     try {
-     await mutateAsync({ taskId, direction });
+      await mutateAsync({ taskId, direction });
     } catch (error) {
       const errorMsg = error.response
         ? error.response.data.error
