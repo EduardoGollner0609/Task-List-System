@@ -8,7 +8,7 @@ interface CardUpdateTaskProps {
   id: number;
   name: string;
   cost: number;
-  limitDate: Date;
+  limitDate: string;
   limitTime: string;
   closeModal(): void;
 }
