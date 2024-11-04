@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useMutation, useQueryClient } from "react-query";
 import { TaskData } from "../interface/TaskData";
+import { BASE_URL } from "../utils/system";
 
-const API_URL = "http://localhost:8080";
+const API_URL = BASE_URL;
 
 type MoveTaskParams = {
   taskId: number;

@@ -1,7 +1,8 @@
 import { useQuery } from "react-query";
 import axios from "axios";
+import { BASE_URL } from "../utils/system";
 
-const API_URL = "http://localhost:8080";
+const API_URL = BASE_URL;
 
 const fetchData = async () => {
   const response = axios.get(API_URL + "/tasks");
