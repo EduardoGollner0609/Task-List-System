@@ -11,7 +11,7 @@ interface TaskProps {
   id: number;
   name: string;
   cost: number;
-  limitDate: Date;
+  limitDate: string;
   limitTime: string;
 }
 
@@ -40,11 +40,11 @@ export default function Task({
     setIsCardErrorModalOpen((prev) => !prev);
   };
 
-  const limitDateDisplay = (date: Date) => {
+  const limitDateDisplay = (date: string) => {
     if (!date || date == null) {
       return "sem prazo";
     } else {
-      const brazilianDate = parseISO(String(date));
+      const brazilianDate = parseISO(date);
       return format(brazilianDate, "dd/MM/yyyy", { locale: ptBR });
     }
   };
