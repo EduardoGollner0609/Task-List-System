@@ -18,9 +18,12 @@ export default function CardIntroduction() {
         <br />
         <p>Clique abaixo e comece agora</p>
       </div>
-      <Link to="/list-tasks">
-        <button>Clique Aqui</button>
-      </Link>
+
+      <button>
+        <Link to="/list-tasks">
+          <p>Clique Aqui</p>
+        </Link>
+      </button>
     </div>
   );
 }

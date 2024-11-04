@@ -12,3 +12,18 @@
   padding-top: 28px;
   text-transform: uppercase;
 }
+
+@media (max-height: 500px) {
+  #title-home-page {
+    display: none;
+  }
+
+  .section-home-page {
+    height: 100vh;
+  }
+
+  .card-introduction {
+    margin: 40px auto;
+    min-height: 370px;
+  }
+}
