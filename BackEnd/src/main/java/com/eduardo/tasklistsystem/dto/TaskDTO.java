@@ -12,7 +12,7 @@ public class TaskDTO {
 
 	private Long id;
 	@NotBlank(message = "O nome não pode estar vazio")
-	@Size(min = 5, message = "O nome deve ter pelo menos 5 caracteres.")
+	@Size(min = 5, max=50, message = "O nome deve ter pelo entre 5 a 50 caracteres")
 	private String name;
 	private Double cost;
 	private LocalDate limitDate;

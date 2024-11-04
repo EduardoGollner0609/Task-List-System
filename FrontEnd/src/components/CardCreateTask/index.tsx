@@ -42,7 +42,7 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
   };
 
   function validatedName(name: string) {
-    if (!name.trim() || name.length < 5) {
+    if (!name.trim() || name.length < 5 || name.length > 30) {
       return false;
     }
     return true;
@@ -50,7 +50,7 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
 
   const submit = () => {
     if (validatedName(name) == false) {
-      setErrorMessage("A tarefa deve ter pelo menos 5 caracteres.");
+      setErrorMessage("A tarefa deve ter entre 5 a 50 caracteres.");
       handleOpenModalError();
     } else {
       const taskData: TaskData = {

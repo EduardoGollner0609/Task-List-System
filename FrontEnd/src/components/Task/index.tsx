@@ -42,7 +42,7 @@ export default function Task({
 
   const limitDateDisplay = (date: Date) => {
     if (!date || date == null) {
-      return "sem prazo estimada";
+      return "sem prazo";
     } else {
       const brazilianDate = parseISO(String(date));
       return format(brazilianDate, "dd/MM/yyyy", { locale: ptBR });
@@ -51,7 +51,7 @@ export default function Task({
 
   const limitTimeDisplay = (time: string) => {
     if (!time || time == null || time == "") {
-      return "sem horário estimado";
+      return "sem horário";
     } else {
       return time.substring(0, 5);
     }
