@@ -1,8 +1,0 @@
-[build]
-  command = "yarn build"
-  publish = "build"
-  
-[[headers]]
-  for = "/*.js"
-  [headers.values]
-    Content-Type = "text/javascript; charset=UTF-8"
