@@ -88,7 +88,6 @@ export default function Task({
               name="arrow-up-outline"
               onClick={() => handleMoveTask(id, "UP")}
             ></ion-icon>
-
             <ion-icon
               name="arrow-down-outline"
               onClick={() => handleMoveTask(id, "DOWN")}
