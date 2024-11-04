@@ -1,3 +1,7 @@
+[build]
+  command = "yarn build"
+  publish = "build"
+  
 [[headers]]
   for = "/*.js"
   [headers.values]
