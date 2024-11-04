@@ -8,3 +8,4 @@
 <p>- H2 Database (para teste) e PostgreSQL (para produção)</p>
 <p>- React com Typescript e algumas bibliotecas(ReactQuery, Axios Date-Fns)</p>
 <h3>Maiores detalhes: </h3>
+<p>Neste site podemos adicionar, atualizar,consultar, deletar e ordenar as tarefas (subindo ou descendo as tarefas conforme suas prioridades). Adicionei algumas pequenas validações ao adicionar, atualizar ou reordenar as tarefas.</p>
