@@ -83,26 +83,26 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
         <h1>Atualizar tarefa</h1>
         <form className="input-container">
           <Input
-            label="name"
+            label="Nome"
             placeHolder="Digite a tarefa"
             value={name}
             updateValue={setName}
           />
           <Input
-            label="cost"
+            label="Custo"
             placeHolder="Digite o custo"
             value={cost}
             updateValue={setCost}
           />
           <label>Data Limite</label>
           <input
-            type="date"
+            type="Data Limite"
             value={limitDate}
             onChange={(event) => setLimitDate(event.target.value)}
           />
           <label>Horario</label>
           <input
-            type="time"
+            type="Horário"
             value={limitTime}
             onChange={(event) => setLimitTime(event.target.value)}
           />
