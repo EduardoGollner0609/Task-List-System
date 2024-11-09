@@ -102,7 +102,7 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
           />
           <label>Horario</label>
           <input
-            type="timee"
+            type="time"
             value={limitTime}
             onChange={(event) => setLimitTime(event.target.value)}
           />
