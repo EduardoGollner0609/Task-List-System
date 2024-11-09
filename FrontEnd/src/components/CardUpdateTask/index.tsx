@@ -96,13 +96,13 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
           />
           <label>Data Limite</label>
           <input
-            type="Data Limite"
+            type="date"
             value={limitDate}
             onChange={(event) => setLimitDate(event.target.value)}
           />
           <label>Horario</label>
           <input
-            type="Horário"
+            type="time"
             value={limitTime}
             onChange={(event) => setLimitTime(event.target.value)}
           />
