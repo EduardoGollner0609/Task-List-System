@@ -34,7 +34,7 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
   const [cost, setCost] = useState();
   const [limitDate, setLimitDate] = useState("");
   const [limitTime, setLimitTime] = useState("");
-  const { mutate } = useTaskDataMutate();
+  const { mutateAsync } = useTaskDataMutate();
   const [isCardErrorModalOpen, setIsCardErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -75,7 +75,7 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
     return true;
   }
 
-  const submit = () => {
+  const submit = async () => {
     const taskData: TaskData = {
       name,
       cost,
@@ -85,8 +85,13 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
     if (!validated(taskData)) {
       handleOpenModalError();
     } else {
-      mutate(taskData);
-      closeModal();
+      try {
+        await mutateAsync(taskData);
+        closeModal();
+      } catch (error) {
+        setErrorMessage(error.response.data.error);
+        handleOpenModalError();
+      }
     }
   };
 

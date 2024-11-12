@@ -36,7 +36,7 @@ const Input = ({ label, value, placeHolder, updateValue }: InputProps) => {
 
 export default function CardUpdateTask(props: CardUpdateTaskProps) {
   const id = props.id;
-  const { mutate } = useTaskDataMutateUpdate();
+  const { mutateAsync } = useTaskDataMutateUpdate();
   const [name, setName] = useState(props.name);
   const [cost, setCost] = useState(props.cost);
   const [limitDate, setLimitDate] = useState(props.limitDate);
@@ -81,7 +81,7 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
     return true;
   }
 
-  const submit = () => {
+  const submit = async () => {
     const taskData: TaskData = {
       id,
       name,
@@ -92,8 +92,13 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
     if (!validated(taskData)) {
       handleOpenModalError();
     } else {
-      mutate(taskData);
-      props.closeModal();
+      try {
+        await mutateAsync(taskData);
+        props.closeModal();
+      } catch (error) {
+        setErrorMessage(error.response.data.error);
+        handleOpenModalError();
+      }
     }
   };
 

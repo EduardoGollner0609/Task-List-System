@@ -1,9 +1,10 @@
 import "./styles.css";
 import Task from "../../components/Task";
 import { useTaskData } from "../../hooks/useTaskData";
-import CardCreateTask from "../../components/CardCreateTask";
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import CardCreateTask from "../../components/CardCreateTask";
 
 export default function ListTasks() {
   const { data } = useTaskData();

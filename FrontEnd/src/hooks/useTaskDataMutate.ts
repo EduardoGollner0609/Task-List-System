@@ -11,18 +11,18 @@ type MoveTaskParams = {
 };
 
 const postData = async (data: TaskData) => {
-  const response = axios.post(API_URL + "/tasks", data);
-  return response;
+  return await axios.post(API_URL + "/tasks", data);
 };
 
 const putData = async (data: TaskData) => {
-  const response = axios.put(`${API_URL}/tasks/${data.id}`, data);
-  return response;
+  return await axios.put(`${API_URL}/tasks/${data.id}`, data);
 };
 
 const putDataTask = async ({ taskId, direction }: MoveTaskParams) => {
   const endpoint =
-    direction === "UP" ? `${API_URL}/tasks/${taskId}/up` : `${API_URL}/tasks/${taskId}/down`;
+    direction === "UP"
+      ? `${API_URL}/tasks/${taskId}/up`
+      : `${API_URL}/tasks/${taskId}/down`;
   await axios.put(endpoint);
 };
 
@@ -35,10 +35,12 @@ export function useTaskDataMutateUpdate() {
 
   const mutate = useMutation({
     mutationFn: putData,
-    retry: 2,
     onSuccess: () => {
       queryClient.invalidateQueries(["task-data"]);
-    }
+    },
+    onError: (error) => {
+      throw error;
+    },
   });
 
   return mutate;
@@ -65,7 +67,8 @@ export function useTaskDataMutatePosition() {
     mutationFn: putDataTask,
     onSuccess: () => {
       queryClient.invalidateQueries(["task-data"]);
-    },onError: (error) => {
+    },
+    onError: (error) => {
       throw error;
     },
   });
@@ -78,9 +81,11 @@ export function useTaskDataMutate() {
 
   const mutate = useMutation({
     mutationFn: postData,
-    retry: 2,
     onSuccess: () => {
       queryClient.invalidateQueries(["task-data"]);
+    },
+    onError: (error) => {
+      throw error;
     },
   });
 
