@@ -66,7 +66,7 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
       setErrorMessage("A tarefa deve ter entre 5 a 30 caracteres.");
       return false;
     }
-    if (taskData.cost == null || taskData.cost <= 0) {
+    if (taskData.cost == null || taskData.cost < 1) {
       setErrorMessage("O custo da tarefa não pode ser 0 ou negativo");
       return false;
     }
@@ -83,6 +83,7 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
 
   const submit = () => {
     const taskData: TaskData = {
+      id,
       name,
       cost,
       limitDate,

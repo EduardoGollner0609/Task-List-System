@@ -60,7 +60,7 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
       setErrorMessage("A tarefa deve ter entre 5 a 30 caracteres.");
       return false;
     }
-    if (taskData.cost == null || taskData.cost <= 0) {
+    if (taskData.cost == null || taskData.cost < 1) {
       setErrorMessage("O custo da tarefa não pode ser 0 ou negativo");
       return false;
     }

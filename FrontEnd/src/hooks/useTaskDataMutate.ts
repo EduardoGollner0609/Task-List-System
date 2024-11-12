@@ -38,9 +38,6 @@ export function useTaskDataMutateUpdate() {
     retry: 2,
     onSuccess: () => {
       queryClient.invalidateQueries(["task-data"]);
-    },
-    onError: () => {
-      alert("Ele já está no limite.");
     }
   });
 
