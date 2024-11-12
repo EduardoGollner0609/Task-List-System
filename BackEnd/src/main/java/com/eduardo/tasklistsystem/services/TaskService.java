@@ -94,6 +94,7 @@ public class TaskService {
 		repository.saveAll(tasks);
 	}
 
+
 	private void copyDtoToEntity(Task task, TaskDTO dto) {
 		task.setName(dto.getName());
 		task.setCost(dto.getCost());

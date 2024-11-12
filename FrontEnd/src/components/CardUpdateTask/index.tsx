@@ -85,7 +85,7 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
     const taskData: TaskData = {
       id,
       name,
-      cost,
+      cost ,
       limitDate,
       limitTime,
     };
