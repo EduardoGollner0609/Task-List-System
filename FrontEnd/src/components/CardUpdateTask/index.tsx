@@ -3,6 +3,7 @@ import { TaskData } from "../../interface/TaskData";
 import { useTaskDataMutateUpdate } from "../../hooks/useTaskDataMutate";
 import { useEffect, useRef, useState } from "react";
 import CardError from "../CardError";
+import { parseISO } from "date-fns";
 
 interface CardUpdateTaskProps {
   id: number;
@@ -44,34 +45,52 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
   const [errorMessage, setErrorMessage] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const handleOpenModalError = () => {
+    setIsCardErrorModalOpen((prev) => !prev);
+  };
+
   useEffect(() => {
     inputRef.current.focus();
   }, []);
 
-  function validatedName(name: string) {
-    if (!name.trim() || name.length < 5 || name.length > 30) {
+  function validated(taskData: TaskData) {
+    const date = parseISO(taskData.limitDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (
+      !taskData.name.trim() ||
+      taskData.name.length < 5 ||
+      taskData.name.length > 30
+    ) {
+      setErrorMessage("A tarefa deve ter entre 5 a 30 caracteres.");
+      return false;
+    }
+    if (taskData.cost == null || taskData.cost <= 0) {
+      setErrorMessage("O custo da tarefa não pode ser 0 ou negativo");
+      return false;
+    }
+    if (!taskData.limitDate || date < today) {
+      setErrorMessage("Digite um prazo válido");
+      return false;
+    }
+    if (!taskData.limitTime) {
+      setErrorMessage("O horário não pode estar vazio.");
       return false;
     }
     return true;
   }
 
-  const handleOpenModalError = () => {
-    setIsCardErrorModalOpen((prev) => !prev);
-  };
-
   const submit = () => {
-    if (validatedName(name) == false) {
-      setErrorMessage("A tarefa deve ter entre 5 a 50 caracteres.");
+    const taskData: TaskData = {
+      name,
+      cost,
+      limitDate,
+      limitTime,
+    };
+    if (!validated(taskData)) {
       handleOpenModalError();
     } else {
-      const taskData: TaskData = {
-        id,
-        name,
-        cost,
-        limitDate,
-        limitTime,
-      };
-
       mutate(taskData);
       props.closeModal();
     }

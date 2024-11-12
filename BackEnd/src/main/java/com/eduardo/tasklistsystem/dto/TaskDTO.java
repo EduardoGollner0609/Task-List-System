@@ -18,6 +18,7 @@ public class TaskDTO {
 	private String name;
 	@Min(value = 1, message = "O custo não pode ser 0 ou negativo.")
 	private Double cost;
+
 	@NotNull(message = "O prazo não pode estar vazio")
 	private LocalDate limitDate;
 	@NotNull(message = "O horário não pode estar vazio")
