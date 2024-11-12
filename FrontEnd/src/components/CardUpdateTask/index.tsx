@@ -1,7 +1,7 @@
 import "./styles.css";
 import { TaskData } from "../../interface/TaskData";
 import { useTaskDataMutateUpdate } from "../../hooks/useTaskDataMutate";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CardError from "../CardError";
 
 interface CardUpdateTaskProps {
@@ -42,6 +42,11 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
   const [limitTime, setLimitTime] = useState(props.limitTime);
   const [isCardErrorModalOpen, setIsCardErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
 
   function validatedName(name: string) {
     if (!name.trim() || name.length < 5 || name.length > 30) {
@@ -82,11 +87,14 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
 
         <h1>Atualizar tarefa</h1>
         <form className="input-container">
-          <Input
-            label="Nome"
-            placeHolder="Digite a tarefa"
+          <label>Nome</label>
+          <input
+            ref={inputRef}
+            type="string"
+            placeholder="Digite a tarefa"
             value={name}
-            updateValue={setName}
+            onChange={(event) => setName(event.target.value)}
+            required
           />
           <Input
             label="Custo"
