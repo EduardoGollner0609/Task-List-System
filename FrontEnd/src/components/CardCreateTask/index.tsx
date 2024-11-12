@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles.css";
 import { useTaskDataMutate } from "../../hooks/useTaskDataMutate";
 import { TaskData } from "../../interface/TaskData";
@@ -36,6 +36,11 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
   const { mutate } = useTaskDataMutate();
   const [isCardErrorModalOpen, setIsCardErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+      inputRef.current.focus();
+  }, []);
 
   const handleOpenModalError = () => {
     setIsCardErrorModalOpen((prev) => !prev);
@@ -74,11 +79,14 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
 
         <h1>Criar tarefa</h1>
         <form className="input-container">
-          <Input
-            label="Nome"
-            placeHolder="Digite a tarefa"
+          <label>Nome</label>
+          <input
+          ref={inputRef}
+            type="string"
+            placeholder="Digite a tarefa"
             value={name}
-            updateValue={setName}
+            onChange={(event) => setName(event.target.value)}
+            required
           />
           <Input
             label="Custo"
