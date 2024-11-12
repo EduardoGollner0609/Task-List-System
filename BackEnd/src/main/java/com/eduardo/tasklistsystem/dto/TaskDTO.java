@@ -5,6 +5,7 @@ import java.time.LocalTime;
 
 import com.eduardo.tasklistsystem.entities.Task;
 
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,7 +19,7 @@ public class TaskDTO {
 	private String name;
 	@Min(value = 1, message = "O custo não pode ser 0 ou negativo.")
 	private Double cost;
-
+	@FutureOrPresent(message = "O prazo não pode ser passado.")
 	@NotNull(message = "O prazo não pode estar vazio")
 	private LocalDate limitDate;
 	@NotNull(message = "O horário não pode estar vazio")
