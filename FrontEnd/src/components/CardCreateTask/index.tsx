@@ -3,7 +3,6 @@ import "./styles.css";
 import { useTaskDataMutate } from "../../hooks/useTaskDataMutate";
 import { TaskData } from "../../interface/TaskData";
 import CardError from "../CardError";
-import { parseISO } from "date-fns";
 
 interface CardCreateTaskProps {
   closeModal(): void;
@@ -28,10 +27,6 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
   };
 
   function validated(taskData: TaskData) {
-    const date = parseISO(taskData.limitDate);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
     if (
       !taskData.name.trim() ||
       taskData.name.length < 5 ||
@@ -39,19 +34,17 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
     ) {
       setErrorMessage("A tarefa deve ter entre 5 a 30 caracteres.");
       return false;
-    } else if (taskData.cost < 1) {
-      setErrorMessage("O custo da tarefa não pode ser 0 ou negativo");
+    } else if (taskData.cost < 0.01) {
+      setErrorMessage("O custo minimo da tarefa é de 0,01.");
       return false;
     } else if (!taskData.cost) {
       setErrorMessage("Digite um custo válido.");
       return false;
     } else if (cost.length > 15) {
-      setErrorMessage("O custo da tarefa não ter mais que 15 de digitos.");
+      setErrorMessage("O custo da tarefa não pode ter mais que 15 digitos.");
       return false;
-    } else if (!taskData.limitDate || date < today) {
-      setErrorMessage(
-        "Digite um prazo válido \nobs: não aceitamos datas passadas"
-      );
+    } else if (!taskData.limitDate) {
+      setErrorMessage("Digite um prazo válido");
       return false;
     } else if (!taskData.limitTime) {
       setErrorMessage("O horário não pode estar vazio.");
