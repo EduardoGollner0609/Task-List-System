@@ -79,7 +79,7 @@ export default function Task({
       <div className={`card-task ${costClass}`}>
         <p>ID: {id}</p>
         <p>Tarefa: {name}</p>
-        <p>Custo: R${cost.toFixed(2)}</p>
+        <p>Custo: R${String(cost.toFixed(2)).replace(".", ",")}</p>
         <p>Prazo: {limitDateDisplay(limitDate)}</p>
         <p>Horário: {limitTimeDisplay(limitTime)}</p>
         <div className="task-icons-functions">

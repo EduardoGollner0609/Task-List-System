@@ -17,7 +17,9 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
   const id = props.id;
   const { mutateAsync } = useTaskDataMutateUpdate();
   const [name, setName] = useState(props.name);
-  const [cost, setCost] = useState<string>(String(props.cost));
+  const [cost, setCost] = useState<string>(
+    String(props.cost).replace(".", ",")
+  );
   const [limitDate, setLimitDate] = useState(props.limitDate);
   const [limitTime, setLimitTime] = useState(props.limitTime);
   const [isCardErrorModalOpen, setIsCardErrorModalOpen] = useState(false);
@@ -41,7 +43,7 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
       setErrorMessage("A tarefa deve ter entre 5 a 30 caracteres.");
       return false;
     } else if (taskData.cost < 0.01) {
-      setErrorMessage("O custo minimo da tarefa é de 0,01.");
+      setErrorMessage("O custo minimo da tarefa é de R$ 0,01.");
       return false;
     } else if (!taskData.cost) {
       setErrorMessage("Digite um custo válido.");

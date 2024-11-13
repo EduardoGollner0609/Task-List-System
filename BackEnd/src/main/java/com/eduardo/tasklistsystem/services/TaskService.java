@@ -98,7 +98,6 @@ public class TaskService {
 		task.setName(dto.getName());
 		task.setCost(dto.getCost());
 		task.setLimitDate(dto.getLimitDate());
-		task.setLimitTime(dto.getLimitTime());
 	}
 
 }

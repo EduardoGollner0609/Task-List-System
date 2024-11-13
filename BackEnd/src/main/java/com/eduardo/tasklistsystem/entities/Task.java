@@ -1,7 +1,7 @@
 package com.eduardo.tasklistsystem.entities;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,19 +20,16 @@ public class Task {
 	private String name;
 	private Double cost;
 	private LocalDate limitDate;
-	private LocalTime limitTime;
 
 	private Long orderApresentation;
 
 	public Task() {
 	}
 
-	public Task(Long id, String name, Double cost, LocalDate limitDate, LocalTime limitTime,
-			Long orderApresentation) {
+	public Task(Long id, String name, Double cost, LocalDate limitDate, Long orderApresentation) {
 		this.id = id;
 		this.name = name;
 		this.cost = cost;
-		this.limitDate = limitDate;
 		this.orderApresentation = orderApresentation;
 	}
 
@@ -74,14 +71,6 @@ public class Task {
 
 	public void setOrderApresentation(Long orderApresentation) {
 		this.orderApresentation = orderApresentation;
-	}
-
-	public LocalTime getLimitTime() {
-		return limitTime;
-	}
-
-	public void setLimitTime(LocalTime limitTime) {
-		this.limitTime = limitTime;
 	}
 
 }
