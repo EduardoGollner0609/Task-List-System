@@ -24,7 +24,6 @@
   text-align: center;
 }
 
-
 .card-update-task-top-exit {
   display: flex;
   align-items: center;
@@ -58,6 +57,7 @@
     color: #fff;
     border-radius: 10px;
     background-color: var(--color-secondary);
+    width: 100%;
   }
 }
 
@@ -78,7 +78,7 @@ input::placeholder {
 }
 
 .card-update-task-top-exit:hover {
-border: 2px solid var(--color-tertiary);
+  border: 2px solid var(--color-tertiary);
 }
 
 .btn-update-task-submit:hover {
