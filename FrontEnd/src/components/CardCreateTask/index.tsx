@@ -39,20 +39,19 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
     ) {
       setErrorMessage("A tarefa deve ter entre 5 a 30 caracteres.");
       return false;
-    }
-    if (taskData.cost == null || taskData.cost < 1) {
+    } else if (taskData.cost < 1) {
       setErrorMessage("O custo da tarefa não pode ser 0 ou negativo");
       return false;
-    }
-    if (cost.length > 15) {
+    } else if (!taskData.cost) {
+      setErrorMessage("Digite um custo válido.");
+      return false;
+    } else if (cost.length > 15) {
       setErrorMessage("O custo da tarefa não ter mais que 15 de digitos.");
       return false;
-    }
-    if (!taskData.limitDate || date < today) {
+    } else if (!taskData.limitDate || date < today) {
       setErrorMessage("Digite um prazo válido");
       return false;
-    }
-    if (!taskData.limitTime) {
+    } else if (!taskData.limitTime) {
       setErrorMessage("O horário não pode estar vazio.");
       return false;
     }
