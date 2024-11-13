@@ -12,16 +12,9 @@ interface TaskProps {
   name: string;
   cost: number;
   limitDate: string;
-  limitTime: string;
 }
 
-export default function Task({
-  id,
-  name,
-  cost,
-  limitDate,
-  limitTime,
-}: TaskProps) {
+export default function Task({ id, name, cost, limitDate }: TaskProps) {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] =
     useState(false);
@@ -49,14 +42,6 @@ export default function Task({
     }
   };
 
-  const limitTimeDisplay = (time: string) => {
-    if (!time || time == null || time == "") {
-      return "sem horário";
-    } else {
-      return time.substring(0, 5);
-    }
-  };
-
   const [errorMessage, setErrorMessage] = useState("");
 
   const costClass =
@@ -81,7 +66,6 @@ export default function Task({
         <p>Tarefa: {name}</p>
         <p>Custo: R${String(cost.toFixed(2)).replace(".", ",")}</p>
         <p>Prazo: {limitDateDisplay(limitDate)}</p>
-        <p>Horário: {limitTimeDisplay(limitTime)}</p>
         <div className="task-icons-functions">
           <div className="task-icons-functions-top">
             <ion-icon
@@ -112,7 +96,6 @@ export default function Task({
           name={name}
           cost={cost}
           limitDate={limitDate}
-          limitTime={limitTime}
           closeModal={handleOpenModalUpdate}
         />
       )}
