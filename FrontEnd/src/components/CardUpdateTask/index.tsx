@@ -66,8 +66,16 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
       setErrorMessage("A tarefa deve ter entre 5 a 30 caracteres.");
       return false;
     }
-    if (taskData.cost == null || taskData.cost < 1) {
+    if (taskData.cost < 1) {
       setErrorMessage("O custo da tarefa não pode ser 0 ou negativo");
+      return false;
+    }
+    if (!taskData.cost) {
+      setErrorMessage("Digite um custo válido.");
+      return false;
+    }
+    if (cost.length > 15) {
+      setErrorMessage("O custo da tarefa não ter mais que 15 de digitos.");
       return false;
     }
     if (!taskData.limitDate || date < today) {

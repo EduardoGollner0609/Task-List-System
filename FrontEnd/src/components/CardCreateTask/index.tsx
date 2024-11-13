@@ -44,6 +44,10 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
       setErrorMessage("O custo da tarefa não pode ser 0 ou negativo");
       return false;
     }
+    if (cost.length > 15) {
+      setErrorMessage("O custo da tarefa não ter mais que 15 de digitos.");
+      return false;
+    }
     if (!taskData.limitDate || date < today) {
       setErrorMessage("Digite um prazo válido");
       return false;
