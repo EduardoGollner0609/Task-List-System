@@ -51,7 +51,6 @@ export function useTaskMutateDelete() {
 
   const mutate = useMutation({
     mutationFn: deleteData,
-    retry: 2,
     onSuccess: () => {
       queryClient.invalidateQueries(["task-data"]);
     },
