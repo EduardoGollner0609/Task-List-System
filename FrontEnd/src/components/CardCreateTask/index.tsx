@@ -49,7 +49,9 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
       setErrorMessage("O custo da tarefa não ter mais que 15 de digitos.");
       return false;
     } else if (!taskData.limitDate || date < today) {
-      setErrorMessage("Digite um prazo válido");
+      setErrorMessage(
+        "Digite um prazo válido \nobs: não aceitamos datas passadas"
+      );
       return false;
     } else if (!taskData.limitTime) {
       setErrorMessage("O horário não pode estar vazio.");
