@@ -12,7 +12,6 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
   const [name, setName] = useState("");
   const [cost, setCost] = useState<string>();
   const [limitDate, setLimitDate] = useState("");
-  const [limitTime, setLimitTime] = useState("");
   const { mutateAsync } = useTaskDataMutate();
   const [isCardErrorModalOpen, setIsCardErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -46,9 +45,6 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
     } else if (!taskData.limitDate) {
       setErrorMessage("Digite um prazo válido");
       return false;
-    } else if (!taskData.limitTime) {
-      setErrorMessage("O horário não pode estar vazio.");
-      return false;
     }
     return true;
   }
@@ -60,7 +56,6 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
       name,
       cost: numericCost,
       limitDate,
-      limitTime,
     };
     if (!validated(taskData)) {
       handleOpenModalError();
@@ -109,12 +104,6 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
             value={limitDate}
             onChange={(event) => setLimitDate(event.target.value)}
             required
-          />
-          <label>Horário</label>
-          <input
-            type="time"
-            value={limitTime}
-            onChange={(event) => setLimitTime(event.target.value)}
           />
         </form>
         <button onClick={submit} className="btn-create-task-submit">

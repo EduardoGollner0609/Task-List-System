@@ -3,5 +3,4 @@ export interface TaskData {
     name: string,
     cost: number,
     limitDate: string,
-    limitTime: string
 }

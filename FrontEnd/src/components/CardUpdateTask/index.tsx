@@ -9,7 +9,6 @@ interface CardUpdateTaskProps {
   name: string;
   cost: number;
   limitDate: string;
-  limitTime: string;
   closeModal(): void;
 }
 
@@ -21,7 +20,6 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
     String(props.cost).replace(".", ",")
   );
   const [limitDate, setLimitDate] = useState(props.limitDate);
-  const [limitTime, setLimitTime] = useState(props.limitTime);
   const [isCardErrorModalOpen, setIsCardErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -54,9 +52,6 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
     } else if (!taskData.limitDate) {
       setErrorMessage("Digite um prazo válido");
       return false;
-    } else if (!taskData.limitTime) {
-      setErrorMessage("O horário não pode estar vazio.");
-      return false;
     }
     return true;
   }
@@ -69,7 +64,6 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
       name,
       cost: numericCost,
       limitDate,
-      limitTime,
     };
     if (!validated(taskData)) {
       handleOpenModalError();
@@ -117,12 +111,6 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
             type="date"
             value={limitDate}
             onChange={(event) => setLimitDate(event.target.value)}
-          />
-          <label>Horario</label>
-          <input
-            type="time"
-            value={limitTime}
-            onChange={(event) => setLimitTime(event.target.value)}
           />
         </form>
         <button onClick={submit} className="btn-update-task-submit">
