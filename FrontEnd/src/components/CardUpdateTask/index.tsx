@@ -14,26 +14,6 @@ interface CardUpdateTaskProps {
   closeModal(): void;
 }
 
-interface InputProps {
-  label: string;
-  value: string | number;
-  placeHolder: string;
-  updateValue(value: unknown): void;
-}
-
-const Input = ({ label, value, placeHolder, updateValue }: InputProps) => {
-  return (
-    <>
-      <label>{label}</label>
-      <input
-        value={value}
-        placeholder={placeHolder}
-        onChange={(event) => updateValue(event.target.value)}
-      ></input>
-    </>
-  );
-};
-
 export default function CardUpdateTask(props: CardUpdateTaskProps) {
   const id = props.id;
   const { mutateAsync } = useTaskDataMutateUpdate();
