@@ -5,33 +5,13 @@ import { TaskData } from "../../interface/TaskData";
 import CardError from "../CardError";
 import { parseISO } from "date-fns";
 
-interface InputProps {
-  label: string;
-  value: string | number;
-  placeHolder: string;
-  updateValue(value: unknown): void;
-}
-
 interface CardCreateTaskProps {
   closeModal(): void;
 }
 
-const Input = ({ label, value, placeHolder, updateValue }: InputProps) => {
-  return (
-    <>
-      <label>{label}</label>
-      <input
-        value={value}
-        placeholder={placeHolder}
-        onChange={(event) => updateValue(event.target.value)}
-      ></input>
-    </>
-  );
-};
-
 export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
   const [name, setName] = useState("");
-  const [cost, setCost] = useState();
+  const [cost, setCost] = useState<string>();
   const [limitDate, setLimitDate] = useState("");
   const [limitTime, setLimitTime] = useState("");
   const { mutateAsync } = useTaskDataMutate();
@@ -76,9 +56,11 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
   }
 
   const submit = async () => {
+    const numericCost = cost ? parseFloat(cost.replace(",", ".")) : 0;
+
     const taskData: TaskData = {
       name,
-      cost,
+      cost: numericCost,
       limitDate,
       limitTime,
     };
@@ -114,11 +96,14 @@ export default function CardCreateTask({ closeModal }: CardCreateTaskProps) {
             onChange={(event) => setName(event.target.value)}
             required
           />
-          <Input
-            label="Custo"
-            placeHolder="Digite o custo"
+          <label>Custo</label>
+          <input
+            type="text"
             value={cost}
-            updateValue={setCost}
+            onChange={(event) => {
+              setCost(event.target.value);
+            }}
+            required
           />
           <label>Data Limite</label>
           <input

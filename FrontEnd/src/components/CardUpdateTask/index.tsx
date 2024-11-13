@@ -38,7 +38,7 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
   const id = props.id;
   const { mutateAsync } = useTaskDataMutateUpdate();
   const [name, setName] = useState(props.name);
-  const [cost, setCost] = useState(props.cost);
+  const [cost, setCost] = useState<string>(String(props.cost));
   const [limitDate, setLimitDate] = useState(props.limitDate);
   const [limitTime, setLimitTime] = useState(props.limitTime);
   const [isCardErrorModalOpen, setIsCardErrorModalOpen] = useState(false);
@@ -82,10 +82,12 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
   }
 
   const submit = async () => {
+    const numericCost = cost ? parseFloat(cost.replace(",", ".")) : 0;
+
     const taskData: TaskData = {
       id,
       name,
-      cost ,
+      cost: numericCost,
       limitDate,
       limitTime,
     };
@@ -121,11 +123,14 @@ export default function CardUpdateTask(props: CardUpdateTaskProps) {
             onChange={(event) => setName(event.target.value)}
             required
           />
-          <Input
-            label="Custo"
-            placeHolder="Digite o custo"
+          <label>Custo</label>
+          <input
+            type="text"
             value={cost}
-            updateValue={setCost}
+            onChange={(event) => {
+              setCost(event.target.value);
+            }}
+            required
           />
           <label>Data Limite</label>
           <input
