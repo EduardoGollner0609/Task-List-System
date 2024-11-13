@@ -1,9 +1,7 @@
 import "./styles.css";
 import Task from "../../components/Task";
 import { useTaskData } from "../../hooks/useTaskData";
-
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import CardCreateTask from "../../components/CardCreateTask";
 
 export default function ListTasks() {
@@ -18,12 +16,6 @@ export default function ListTasks() {
     <main>
       <div className="top-list-tasks">
         <h1 id="title-list-tasks">Lista de Tarefas</h1>
-        <Link to="/">
-          <div className="top-list-tasks-icon-exit">
-            <ion-icon name="exit-outline"></ion-icon>
-            <p>Voltar</p>
-          </div>
-        </Link>
       </div>
       <section className="section-list-tasks">
         <div className="list-tasks">
