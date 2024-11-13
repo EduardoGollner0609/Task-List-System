@@ -21,7 +21,7 @@ public class TaskService {
 
 	@Transactional
 	public TaskDTO insert(TaskDTO dto) {
-		if (repository.existsByName(dto.getName())) {
+		if (repository.existsByNameIgnoreCase(dto.getName())) {
 			throw new IllegalArgumentException("Nome já existe");
 		}
 		Task task = new Task();
@@ -53,7 +53,7 @@ public class TaskService {
 	@Transactional
 	public TaskDTO update(Long id, TaskDTO dto) {
 		Task task = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Tarefa não encontrada."));
-		if (!task.getName().equals(dto.getName()) && repository.existsByName(dto.getName())) {
+		if (!task.getName().equalsIgnoreCase(dto.getName()) && repository.existsByNameIgnoreCase(dto.getName())) {
 			throw new IllegalArgumentException("Nome já existe");
 		}
 		copyDtoToEntity(task, dto);
@@ -93,7 +93,6 @@ public class TaskService {
 		}
 		repository.saveAll(tasks);
 	}
-
 
 	private void copyDtoToEntity(Task task, TaskDTO dto) {
 		task.setName(dto.getName());
